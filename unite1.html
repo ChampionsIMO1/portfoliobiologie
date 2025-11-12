@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unité 1 : Biochimie Cellulaire - SBI4U</title>
+    <meta name="description" content="Contenu détaillé de l'Unité 1 : Biochimie Cellulaire pour le portfolio de biologie SBI4U.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: 220 15% 10%;
+            --foreground: 180 10% 95%;
+            --card: 220 15% 12%; /* Dark background for boxes */
+            --primary: 160 80% 45%; /* Greenish-Cyan */
+            --primary-foreground: 220 15% 10%;
+            --secondary: 180 25% 20%;
+            --muted-foreground: 180 5% 60%;
+            --accent: 140 70% 50%; /* Brighter Green */
+            --border: 220 15% 20%; /* Simple border color */
+            --gradient-primary: linear-gradient(135deg, hsl(160 80% 45%), hsl(140 70% 50%));
+            --shadow-glow: 0 0 30px hsl(160 80% 45% / 0.2);
+            --shadow-card: 0 8px 32px hsl(220 15% 5% / 0.4);
+        }
+
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+            padding-top: 5rem;
+        }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Animation definitions */
+        @keyframes fadeInUp {from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);} }
+        .animate-fadeIn { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        
+        /* Navigation */
+        nav { 
+            position: fixed; top:0; left:0; right:0; z-index:1000; 
+            background-color:hsl(var(--background)/0.95); 
+            backdrop-filter:blur(12px); 
+            box-shadow:0 4px 20px hsl(220 15% 5% / 0.3);
+        }
+        .nav-content { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.5rem; }
+        .logo { font-size:1.5rem; font-weight:700; cursor:pointer; transition: opacity 0.3s; }
+        .back-link { font-weight: 500; text-decoration: none; color: hsl(var(--foreground)); }
+        .back-link:hover { color: hsl(var(--primary)); }
+
+        /* General Section Styling */
+        section { padding:6rem 1.5rem; }
+        .section-header { text-align:center; margin-bottom:4rem; }
+        .section-header h2 { font-size:clamp(2.5rem,5vw,3.5rem); font-weight:700; margin-bottom:1rem; }
+
+        /* Button Styling */
+        .btn {
+            display:inline-block; padding:1rem 2rem; font-size:1.125rem; font-weight:600;
+            text-decoration:none; border-radius:0.75rem; transition: all 0.3s;
+            cursor:pointer; border:none; text-align:center; max-width: fit-content;
+        }
+        .btn-primary { background:var(--gradient-primary); color:hsl(var(--primary-foreground)); }
+        .btn-primary:hover { box-shadow:var(--shadow-glow); transform:translateY(-2px); }
+        .bg-secondary { background-color: hsl(var(--secondary)/0.2); }
+
+
+        /* Unit Specific Content Styles */
+        .content-box {
+            background: hsl(var(--card));
+            border: 2px solid hsl(var(--border)); /* Simple border */
+            border-radius: 1rem;
+            padding: 3rem;
+            box-shadow: var(--shadow-card);
+            margin-bottom: 2rem;
+        }
+        .content-box h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: hsl(var(--primary));
+        }
+        .content-box p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: hsl(var(--foreground));
+        }
+        
+        /* List for Informations Pertinentes (strong/bigger text for headers) */
+        .info-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .info-list li {
+            margin-bottom: 1.5rem;
+        }
+        .info-list li strong {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: hsl(var(--accent));
+            margin-bottom: 0.5rem;
+        }
+        
+        /* List for Historique */
+        .historique-list {
+            list-style: disc; 
+            padding-left: 1.5rem;
+        }
+        .historique-list li {
+            margin-bottom: 0.75rem;
+        }
+        .historique-list li strong {
+            font-weight: 700;
+        }
+
+        .grid { display:grid; gap:2rem; }
+        .grid-2 { grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
+        
+        /* Style for Image Container */
+        .image-container {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .content-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-box { padding: 2rem; }
+            section { padding: 4rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav id="nav">
+        <div class="container nav-content">
+            <a href="portfoliosbi4u.html#unites" class="back-link">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 0.5rem;">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Retour aux Unités
+            </a>
+            <div class="logo gradient-text">Unité 1: Biochimie Cellulaire</div>
+        </div>
+    </nav>
+
+    <section id="introduction">
+        <div class="container">
+            <div class="section-header animate-fadeIn">
+                <h2 class="gradient-text">Biochimie Cellulaire</h2>
+                <p>
+                    La biochimie cellulaire est l'étude des molécules qui composent les cellules et les réactions chimiques qui se produisent. Cette unité m'a permis de découvrir comment les macromolécules, comme les protéines, les glucides, les lipides et les acides nucléiques interagissent pour maintenir la vie. J'ai appris que même les petits molécules ont encore des rôles essentiels dans le fonctionnement du corps. 
+                </p>
+                <div class="image-container">
+                    <img class="content-image" src="https://www.thoughtco.com/thmb/KC4a3LJ9Lvarsw6QaZ69z-tsKEU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/animal-cells-vs-plant-cells-373375_final-5b462d7fc9e77c00375014f1.png" alt="Diagramme de cellules animales et végétales pour l'introduction à la biochimie.">
+                </div>
+                </div>
+            
+            <div class="grid grid-2">
+                <div class="content-box animate-fadeIn delay-1">
+                    <h3>Scientifique Ontarien - Julie Forman-Kay</h3>
+                    <p>
+                        Dr. Julie Forman-Kay est une biochimiste, chercheuse à l'Hôpital pour Sick Children et professeur à l'Université de Toronto. Elle est reconnue à l'échelle internationale pour ses recherches sur les protéines désordonnées (les protéines qui n'ont pas une structure stable.) Son objectif est de comprendre comment ces protéines participent à la signalisation cellulaire et aux interactions moléculaires qui jouent un rôle important au maintien de la vie. Les travaux de Dr. Julie ont permis de mieux comprendre les rôles de ces protéines dans certaines maladies, comme le cancer et les troubles neurodégénératifs.
+                    </p>
+                    <div class="image-container">
+                        <img class="content-image" src="https://media.utoronto.ca/wp-content/uploads/Forman-Kay_1899_crop.jpg" alt="Portrait de la Dr. Julie Forman-Kay, biochimiste ontarienne.">
+                    </div>
+                    </div>
+
+                <div class="content-box animate-fadeIn delay-2">
+                    <h3>Carte Conceptuelle</h3>
+                    <p style="text-align: center; margin-top: 2rem;">
+                        <a href="https://www.mindomo.com/mindmap/c0e11ea8c3014fd1b2173e950b6bfa2e" target="_blank" class="btn btn-primary" style="width: 100%;">
+                            https://www.mindomo.com/mindmap/c0e11ea8c3014fd1b2173e950b6bfa2e
+                        </a>
+                    </p>
+                    <div class="image-container">
+                        <img class="content-image" src="https://www.mindomo.com/mindmap/c0e11ea8c3014fd1b2173e950b6bfa2e" alt="Carte conceptuelle de l'unité de biochimie (Mindomo).">
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="historique-analyse" class="bg-secondary">
+        <div class="container">
+            <div class="grid grid-2">
+                <div class="content-box animate-fadeIn delay-3">
+                    <h3>Historique</h3>
+                    <ul class="historique-list">
+                        <li>
+                            <strong>1590-1600s:</strong>
+                            Invention du microscope et découverte des cellules.
+                            <br>
+                            <strong>Théorie cellulaire:</strong> Toutes les cellules viennent d'autres cellules (unité fondamentale de la vie.)
+                            <br>
+                            Étude des éléments chimiques (C, H, O, N, P, S).
+                        </li>
+                        <li>
+                            <strong>1800s:</strong>
+                            Identification des macromolécules.
+                            <br>
+                            Rôle des enzymes découvert (catalyseurs).
+                            <br>
+                            Compréhension du métabolisme cellulaire.
+                        </li>
+                        <li>
+                            <strong>1972:</strong>
+                            Modèle mosaÏque fluide.
+                        </li>
+                    </ul>
+                    <div class="image-container">
+                        <img class="content-image" src="https://static.wixstatic.com/media/247107_2e8d937ac20f4e61a58500e682b71248~mv2.jpg/v1/fill/w_358,h_212,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Robert-Hookes-Diagrams.jpg" alt="Diagrammes de Robert Hooke (découverte de la cellule).">
+                    </div>
+                    </div>
+
+                <div class="content-box animate-fadeIn delay-4">
+                    <h3>Analyse Article</h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        <a href="https://trustmyscience.com/fabrication-cellules-biologie/" target="_blank" style="color: hsl(var(--primary)); text-decoration: underline;">https://trustmyscience.com/fabrication-cellules-biologie/</a>
+                    </p>
+                    <p>
+                        L'article que j'ai choisi c'est "Comment les biologistes créent-ils de vraies cellules à partir de «rien»?", publié par Stéphanie Schmidt sur Trust My Science le 12 novembre 2018. Cet article explique comment les chercheurs réussisent à créer des cellules vivantes synthétiques à partir des biomolécules. En combinant les huit composants (2 protéines, 3 agents tampons, 2 types de molécules de graisse, et de l'énergie chimique), les chercheurs ont créer une cellule synthétique. Le texte explique que l'objectif est de construire un système semblable à une cellule qui est capable de se diviser et de maintenir des mécanismes fondamentaux, comme la compartimentation, le métabolisme, et le contrôle de l'information. Il est énoncé que les membranes lipidiques (liposomes) ont été construites avec des techniques microfluidiques pour imiter une taille cellulaire et de permettre l'insertion de protéines dans les membranes. L'article mentionne aussi que l'énergie sous forme d'ATP est essentielle à ces systèmes synthétiques et souligne l'importance des réactions chimiques aux cellules.
+                    </p>
+                    <p>
+                        Je trouve cet article intéressant pour l'unité de biochimie cellulaire, car sa illustre comment les biomolécules, les membranes et l'énergie sont combinées pour créer les structures de base de la vie. 
+                    </p>
+                    <div class="image-container">
+                        <img class="content-image" src="https://static.wixstatic.com/media/247107_b486a51122864925a3b66b5a82fb32af~mv2.png/v1/fill/w_358,h_212,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/41570_2024_606_Figa_HTML.png" alt="Diagramme de liposome ou de membrane cellulaire.">
+                    </div>
+                    </div>
+            </div>
+            
+            <div class="content-box animate-fadeIn delay-3" style="margin-top: 2rem;">
+                <h3>Recherce De Carrières - Technicien En Laboratoire De Biochimie</h3>
+                <p>
+                    Les techniciens en laboratoire de biochimie travaille dans des laboratoires pour aider les chercheurs à analyser des échantillons biologiques. Ils préparent des solutions chimiques, effectuent des tests sur des cellules, des protéines et des acides nucléiques, et aide à collecter des données pour les projets de recherche. Le travail se fait généralement dans les hôpitaux, des universités ou des entreprises privées. Selon la banque d'emplois de Canada, leurs salaires peuvent varier de 20$/h à 47,82$/h en Ontario.
+                </p>
+                <p>
+                    Pour devenir technicien en laboratoire de biochimie, vous avez besoins d'un diplôme d'étude collégiales de 2-3 ans en techniques chimiques/bichomiques/génie chimique ou dans une discipline connexe est habituellement exigé des technologues en chimie. Cette carrière est important, car elle permet de soutenir la recherche scientifique et de contribuer à plus de découvertes médicales et biologiques.
+                </p>
+                <div class="image-container">
+                    <img class="content-image" src="https://static.wixstatic.com/media/247107_fd94839795874fef9929e8b33f627b8e~mv2.jpg/v1/fill/w_358,h_212,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/17-04-technicien-laboratoire.jpg" alt="Technicien en laboratoire effectuant des analyses.">
+                </div>
+                </div>
+            
+        </div>
+    </section>
+    
+    <section id="informations-pertinentes">
+        <div class="container">
+            <div class="section-header animate-fadeIn delay-4">
+                <h2 class="gradient-text">Informations Pertinentes</h2>
+            </div>
+            <div class="content-box animate-fadeIn delay-4">
+                <ul class="info-list">
+                    <li>
+                        <strong>Communication cellulaire par S-nitrosothiols:</strong> Les globules rouges libèrent des S-nitrosothiols dans la circulation sanguine lorsqu'ils circulent dans des tissus à faible pression partielle d'oxygène. Ces molécules provoquent la dilatation (augmentation de volume) des vaisseaux sanguins et facilitent l'irrigation sanguine des tissus (sang fourni de l'oxygène.)
+                    </li>
+                    <li>
+                        <strong>Mitochondries sont héritées par les bactéries:</strong> Les mitochondries sont en réalité des bactéries qui ont été intégrées dans les cellules eucaryotes par un processus appelé endosymbiose. Les mitochondries possèdent leur propre ADN et ribosomes.
+                    </li>
+                    <li>
+                        <strong>Protéines désordonnées:</strong> Toutes les protéines n'ont pas une forme fixe tridimensionnelle . Certaines, qu'on appelle les protéine désordonnées, n'ont pas de structure stable et peuvent changer de forme. Elles sont très importantes pour le fonctionnement des cellules et peuvent être liées à des maladies du cerveau, comme certaines maladies neurodégénératives (quand les cellules nerveuses du cerveau sont perdus.)
+                    </li>
+                </ul>
+                <div class="image-container">
+                    <img class="content-image" src="https://static.wixstatic.com/media/247107_2141a3e0f30b4d6d9c1ca6c3fb4b4780~mv2.png/v1/fill/w_358,h_212,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/endosymbiose_edited.png" alt="Diagramme illustrant la théorie de l'endosymbiose (mitochondries).">
+                </div>
+                <div style="text-align: center; margin-top: 4rem;">
+                    <a href="portfoliosbi4u.html#unites" class="btn btn-primary">
+                        Retour aux Unités du Portfolio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script src="https://static.app/js/static.js" type="text/javascript"></script>
+</body>
+</html>
