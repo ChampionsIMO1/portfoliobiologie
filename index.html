@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biology Portfolio - Projet de Cours</title>
+    <meta name="description" content="Portfolio de projet de cours montrant la lettre d'ouverture, les unités, la carte conceptuelle, le collage photo et la lettre de clôture.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: 220 15% 10%;
+            --foreground: 180 10% 95%;
+            --card: 220 15% 12%;
+            --card-foreground: 180 10% 95%;
+            --primary: 160 80% 45%; /* Greenish-Cyan */
+            --primary-foreground: 220 15% 10%;
+            --secondary: 180 25% 20%;
+            --secondary-foreground: 180 10% 95%;
+            --muted: 220 15% 18%;
+            --muted-foreground: 180 5% 60%;
+            --accent: 140 70% 50%; /* Brighter Green */
+            --border: 220 15% 20%;
+            --ring: 160 80% 45%; /* Same as primary */
+
+            --gradient-primary: linear-gradient(135deg, hsl(160 80% 45%), hsl(140 70% 50%));
+            --shadow-glow: 0 0 30px hsl(160 80% 45% / 0.2);
+            --shadow-card: 0 8px 32px hsl(220 15% 5% / 0.4);
+        }
+
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-primary { background: var(--gradient-primary); }
+        .shadow-glow { box-shadow: var(--shadow-glow); }
+
+        /* Animation definitions */
+        @keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);} }
+        @keyframes fadeInUp {from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);} }
+        @keyframes bounce {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);} }
+        
+        /* Animation cycles between the Primary/Accent green hues (FASTER LOOP) */
+        @keyframes glowing-border {
+            0% { background-position: 0% 50%; } /* Start gradient from left */
+            50% { background-position: 100% 50%; } /* Move gradient to right */
+            100% { background-position: 0% 50%; } /* Return to start */
+        }
+
+        /* Animation Classes */
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-fadeIn { animation: fadeInUp 1s ease-out forwards; opacity: 0; } /* Ensure initial state is hidden for the animation */
+        .animate-bounce { animation: bounce 2s ease-in-out infinite; }
+        
+        /* Staggered animation delays for content and cards */
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1.0s; }
+        .delay-6 { animation-delay: 1.2s; }
+
+
+        nav { position: fixed; top:0; left:0; right:0; z-index:1000; transition: all 0.3s ease; }
+        nav.scrolled { background-color:hsl(var(--background)/0.95); backdrop-filter:blur(12px); box-shadow:0 4px 20px hsl(220 15% 5% / 0.3);}
+        .nav-content { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.5rem; }
+        .logo { font-size:1.5rem; font-weight:700; cursor:pointer; transition: opacity 0.3s; }
+        .logo:hover { opacity:0.8; }
+
+        /* HEADER NAVIGATION */
+        .nav-links { display:flex; gap:2rem; list-style:none; position:relative; }
+        .nav-links li { position:relative; }
+        .nav-links a { color:hsl(var(--foreground)); text-decoration:none; font-weight:500; transition: color 0.3s; }
+        .nav-links a:hover { color:hsl(var(--primary)); }
+
+        /* Dropdown menu */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: hsl(var(--background));
+            border: 1px solid hsl(var(--border));
+            border-radius: 0.5rem;
+            flex-direction: column;
+            min-width: 200px;
+            padding: 0.5rem 0;
+            z-index: 1001;
+        }
+        .dropdown-content a {
+            padding: 0.5rem 1rem;
+            color: hsl(var(--foreground));
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .dropdown-content a:hover { background: hsl(var(--secondary)/0.2); }
+
+        /* Sticky hover for dropdown */
+        .dropdown:hover .dropdown-content,
+        .dropdown-content:hover { display: flex; }
+
+        .mobile-menu-btn { display:none; background:none; border:none; color:hsl(var(--foreground)); font-size:1.5rem; cursor:pointer; }
+        .mobile-menu { display:none; position:fixed; inset:0; background:hsl(var(--background)/0.98); backdrop-filter:blur(20px); z-index:999; flex-direction:column; justify-content:center; align-items:center; gap:2rem; }
+        .mobile-menu.active { display:flex; }
+        .mobile-menu a { font-size:2rem; font-weight:600; color:hsl(var(--foreground)); text-decoration:none; transition:color 0.3s; }
+        .mobile-menu a:hover { color:hsl(var(--primary)); }
+
+        /* Hero Section */
+        .hero { 
+            position:relative; 
+            min-height:100vh; 
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            overflow:hidden; 
+            margin-bottom:4rem; 
+        }
+        .hero-bg { 
+            position:absolute; 
+            inset:0; 
+            background: 
+                linear-gradient(to bottom, hsl(var(--background)/0.4), hsl(var(--background)/0.6)), 
+                url('https://www.genome.gov/sites/default/files/media/images/tg/DNA_hero.png') center bottom / cover no-repeat; 
+            
+            opacity: 1; 
+        }
+
+        .hero-content { position:relative; z-index:10; text-align:center; padding:2rem; }
+        .badge { display:inline-block; padding:0.5rem 1rem; border-radius:9999px; background:hsl(var(--primary)/0.1); border:1px solid hsl(var(--primary)/0.2); color:hsl(var(--primary)); font-size:0.875rem; font-weight:500; margin-bottom:1.5rem; }
+        .hero-content h1 { font-size:clamp(2.5rem,6vw,4rem); font-weight:800; line-height:1.1; margin-bottom:1rem; }
+        .hero-content p { font-size:1.125rem; color:hsl(var(--muted-foreground)); max-width:42rem; margin:0 auto 2rem; }
+        .btn {
+            display:inline-block;
+            padding:1rem 2rem;
+            font-size:1.125rem;
+            font-weight:600;
+            text-decoration:none;
+            border-radius:0.75rem;
+            transition: all 0.3s;
+            cursor:pointer;
+            border:none;
+            text-align:center;
+            width: calc(100% - 2rem);
+            max-width: none;
+        }
+        .btn-primary { background:var(--gradient-primary); color:hsl(var(--primary-foreground)); }
+        .btn-primary:hover { box-shadow:var(--shadow-glow); transform:translateY(-2px); }
+        .btn-outline { background:transparent; border:1px solid hsl(var(--primary)/0.3); color:hsl(var(--foreground)); }
+        .btn-outline:hover { background:hsl(var(--primary)/0.1); border-color:hsl(var(--primary)/0.5); }
+        .cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:1rem; }
+        .scroll-indicator { display:inline-block; color:hsl(var(--foreground)); cursor:pointer; transition: color 0.3s; }
+        .scroll-indicator:hover { color:hsl(var(--primary)); }
+
+        section { padding:6rem 1.5rem; }
+        .section-header { text-align:center; margin-bottom:4rem; }
+        .section-header h2 { font-size:clamp(2.5rem,5vw,3.5rem); font-weight:700; margin-bottom:1rem; }
+        .section-header p { font-size:1.25rem; color:hsl(var(--muted-foreground)); max-width:42rem; margin:0 auto; }
+
+        .grid { display:grid; gap:2rem; }
+        /* 2-column layout (for the two large cards/units, min width 300px) */
+        .grid-2 { grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
+        /* 3-column layout (for smaller cards, min width 280px) */
+        .grid-3 { grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+        
+        .card { background:hsl(var(--card)); border:1px solid hsl(var(--border)); border-radius:1rem; padding:2rem; transition: all 0.3s; display:flex; flex-direction:column; align-items:center; text-align:center; }
+        .card:hover { border-color:hsl(var(--primary)/0.5); box-shadow:var(--shadow-glow); transform:translateY(-4px); }
+        .card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+            border-radius: 0.75rem; 
+            margin-bottom: 1.5rem; 
+            /* Ensure images in cards don't dominate too much vertical space */
+            max-height: 150px; 
+        }
+
+        .card h3 { font-size:1.5rem; font-weight:600; margin-bottom:1rem; text-align:center; }
+        .card p { color:hsl(var(--muted-foreground)); margin-bottom:1rem; text-align:center; }
+        .card .btn { margin-top:auto; }
+
+        /* Conteneur de la lettre et des images */
+        .introduction-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr; /* 3/5 pour la lettre, 2/5 pour les images */
+            gap: 2rem;
+            align-items: stretch; /* IMPORTANT: Fait correspondre la hauteur des colonnes */
+            margin-top: 2rem;
+            background:hsl(var(--secondary)/0.1); 
+            border-radius:1.5rem; 
+            padding:2rem; /* Padding appliqué au conteneur externe */
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Conteneur de la lettre */
+        .letter-box { 
+            background: none;
+            border: none;
+            border-radius: 0;
+            padding: 0; 
+            margin-top: 0; 
+            color:hsl(var(--foreground)); 
+            font-size: 1.1rem; 
+        }
+
+        /* Stack d'images */
+        .images-stack {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 colonnes */
+            grid-template-rows: repeat(3, 1fr); /* 3 rangées flexibles */
+            height: 100%; /* Force le conteneur à prendre toute la hauteur */
+            gap: 0.75rem; 
+            align-content: stretch; 
+        }
+
+        .image-box {
+            background: hsl(var(--card)); 
+            border: 1px solid hsl(var(--border));
+            border-radius: 0.75rem;
+            padding: 0.25rem; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: transform 0.3s;
+            height: 100%; /* Les boîtes individuelles remplissent leur rangée */
+        }
+        
+        /* Assurez-vous que les liens remplissent la boîte */
+        .image-box a {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none; 
+        }
+
+        .image-box:hover {
+            transform: scale(1.05);
+            border-color: hsl(var(--accent));
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            border-radius: 0.5rem;
+            transition: opacity 0.3s;
+        }
+        /* Fin des styles pour les images/liens */
+
+
+        /* CSS for the larger salutation and signature */
+        .letter-box p b {
+            font-size: 1.4rem; 
+            font-weight: 700;
+            display: inline-block; 
+        }
+        
+        /* The signature itself should be larger */
+        .letter-box p:last-child b {
+             font-size: 1.5rem; 
+        }
+        
+        /* Letter box glow styling (appliqué à introduction-grid) */
+        .animated-border { 
+            border: none; 
+            box-shadow: 0 0 15px hsl(var(--primary)/0.2); 
+            padding: 2.1rem; 
+            margin-top: 2rem;
+        }
+        
+        .animated-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 6px; 
+            border-radius: 1.5rem; 
+            background: linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--accent)) 25%, hsl(var(--primary)) 50%, hsl(var(--accent)) 75%, hsl(var(--primary)) 100%); 
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+            
+            /* High intensity settings (FAST and BRIGHT) */
+            animation: glowing-border 1.5s linear infinite; 
+            background-size: 400% 100%; 
+            filter: blur(8px); 
+            opacity: 1; 
+            box-shadow: 0 0 20px hsl(var(--primary)/0.5), 0 0 30px hsl(var(--accent)/0.3); 
+        }
+
+        /* Styles pour la Lightbox (Modal) */
+        .lightbox {
+            display: none; /* Caché par défaut */
+            position: fixed; 
+            z-index: 2000; /* Assurez-vous qu'il est au-dessus de tout le reste */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.9); /* Fond noir semi-transparent */
+            transition: opacity 0.3s;
+            padding-top: 60px; /* Espace pour le bouton de fermeture */
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh; /* Limite la hauteur pour qu'elle s'adapte à l'écran */
+            object-fit: contain; /* Assure que l'image complète est visible */
+            animation: zoom 0.6s;
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0.1)} 
+            to {transform: scale(1)}
+        }
+        
+        /* Bouton de Fermeture */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media (max-width:1024px) {
+            .introduction-grid {
+                grid-template-columns: 1fr; 
+            }
+            .images-stack {
+                grid-template-columns: 1fr 1fr 1fr; 
+                gap: 0.75rem;
+                grid-template-rows: auto; 
+                height: auto;
+            }
+            .image-box {
+                padding: 0.25rem; 
+                height: 100px; 
+            }
+            .animated-border {
+                padding: 1.5rem; 
+            }
+        }
+
+        @media (max-width:768px) {
+            .nav-links { display:none; }
+            .mobile-menu-btn { display:block; }
+            section { padding:4rem 1rem; }
+            .cta-buttons { flex-direction:column; }
+            .images-stack {
+                grid-template-columns: 1fr 1fr; 
+            }
+            .image-box {
+                height: 120px;
+            }
+        }
+
+        .bg-secondary { background:hsl(var(--secondary)/0.2); }
+    </style>
+</head>
+<body>
+    <nav id="nav">
+        <div class="container nav-content">
+            <div class="logo gradient-text" onclick="scrollToTop()">André Sidarous - SBI4U</div>
+            <ul class="nav-links">
+                <li class="dropdown">
+                    <a href="#">Menu ▼</a>
+                    <div class="dropdown-content">
+                        <a href="#lettre-ouverture">Lettre d'Ouverture</a>
+                        <a href="#unites">Unités</a>
+                        <a href="#carte">Carte Conceptuelle</a>
+                        <a href="#collage">Collage Photo</a>
+                        <a href="#lettre-cloture">Lettre de Clôture</a>
+                    </div>
+                </li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="#lettre-ouverture" onclick="toggleMobileMenu()">Lettre d'Ouverture</a>
+        <a href="#unites" onclick="toggleMobileMenu()">Unités</a>
+        <a href="#carte" onclick="toggleMobileMenu()">Carte Conceptuelle</a>
+        <a href="#collage" onclick="toggleMobileMenu()">Collage Photo</a>
+        <a href="#lettre-cloture" onclick="toggleMobileMenu()">Lettre de Clôture</a>
+    </div>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content animate-fadeIn delay-1">
+            <div class="badge">Portfolio Personnel - SBI4U</div>
+            <h1 class="gradient-text">Andre Sidarous</h1>
+            <p>Bienvenue dans mon portfolio présentant ma lettre d'ouverture, mes unités, la carte conceptuelle et les projets associés.</p>
+            <div class="cta-buttons">
+                <a href="#table-matieres" class="btn btn-primary">Voir la table de matière</a>
+            </div>
+            <div class="scroll-indicator animate-bounce" onclick="document.getElementById('lettre-ouverture').scrollIntoView({behavior:'smooth'})">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section id="table-matieres" class="bg-secondary">
+        <div class="container">
+            <div class="section-header animate-fadeIn delay-2">
+                <h2 class="gradient-text">Table de Matières</h2>
+                <p>Accédez rapidement aux différentes sections du portfolio.</p>
+            </div>
+            
+            <div style="max-width: 800px; margin: 0 auto;"> 
+                <div class="grid grid-2"> 
+                    <div class="card animate-fadeIn delay-3">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4627/4627436.png" alt="Lettre d'Ouverture">
+                        <h3>Lettre d'Ouverture</h3>
+                        <a href="#lettre-ouverture" class="btn btn-primary">Voir</a>
+                    </div>
+                    <div class="card animate-fadeIn delay-4">
+                        <img src="https://www.growthengineering.co.uk/wp-content/uploads/Learner-Engagement-Biz-Impact-ill-2_Hi-Performance-Learning-Culture-v2.png" alt="Unités">
+                        <h3>Unités</h3>
+                        <a href="#unites" class="btn btn-primary">Voir</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-3" style="margin-top:2rem;">
+                <div class="card animate-fadeIn delay-5">
+                    <img src="https://enseigner.hec.ca/wp-content/uploads/2022/11/Image1.png" alt="Carte Conceptuelle">
+                    <h3>Carte Conceptuelle</h3>
+                    <a href="#carte" class="btn btn-primary">Voir</a>
+                </div>
+                <div class="card animate-fadeIn delay-4">
+                    <img src="https://collage-maker.com/wp-content/uploads/large-photo-collage-e1680700281663.png" alt="Collage Photo">
+                    <h3>Collage Photo</h3>
+                    <a href="#collage" class="btn btn-primary">Voir</a>
+                </div>
+                <div class="card animate-fadeIn delay-5">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/038/941/937/small/3d-closed-mail-envelope-icon-png.png" alt="Lettre de Clôture">
+                    <h3>Lettre de Clôture</h3>
+                    <a href="#lettre-cloture" class="btn btn-primary">Voir</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lettre-ouverture">
+        <div class="container">
+            <div class="section-header animate-fadeIn">
+                <h2 class="gradient-text">Lettre d'Ouverture et Intérêts</h2>
+            </div>
+            
+            <div class="introduction-grid animated-border animate-fadeIn delay-2">
+                <div class="letter-box"> 
+                    <p>
+                        <b>Cher M. Mark,</b>
+                    </p>
+                    <p style="margin-top: 1.5em;">
+                        Je m’appelle André Sidarous et je suis un élève de 12e année intéressé par les sciences, surtout celles qui expliquent le fonctionnement du corps humain et des organismes vivants. En dehors de l’école, j’aime explorer la technologie, plus particulièrement l'informatique. J’ai construit mon premier ordinateur à l’âge de 13 ans, ce qui m’a permis de développer ma curiosité et mon esprit logique. Ce qui me démarque, c’est mon désir de comprendre les phénomènes qui nous entourent et de relier la science à la technologie.
+                    </p>
+                    <p style="margin-top: 1.5em;">
+                        J’ai choisi de suivre le cours de Biologie 12e préuniversitaire, car je veux approfondir mes connaissances sur la vie et les systèmes qui la rendent possible. À mon avis, la biologie est l’étude de la vie sous toutes ses formes, qu’il s'agisse des cellules, du corps ou des écosystèmes. Elle nous aide à comprendre comment chaque partie de la nature est connectée et essentielle au fonctionnement du monde.
+                    </p>
+                    <p style="margin-top: 1.5em;">
+                        Depuis que j’ai découvert qu’un médicament que j’avais recherché, l’Accutane, a aidé à guérir mon acné, j’ai développé un grand intérêt pour la recherche pharmaceutique et la compréhension de la façon dont les traitements agissent sur le corps humain. Cette curiosité m’a encouragé à explorer davantage le lien entre la chimie, la biologie et la santé.
+                    </p>
+                    <p style="margin-top: 1.5em;">
+                        Grâce à ce cours, j’espère améliorer ma compréhension de sujets comme la biochimie cellulaire, les processus métaboliques, etc. Mon objectif est de poursuivre mes études postsecondaires dans un domaine lié à la science et je crois que ce cours m’offrira une base solide pour atteindre ce but.
+                    </p>
+                    <p style="margin-top: 1.5em;">
+                        J’ai déjà acquis certaines connaissances utiles en biologie sur les cellules, les systèmes du corps humain, la reproduction des plantes et des humains, et d'autres sujets de biologie dans le cours de 11e année. Ces apprentissages me serviront à mieux comprendre les concepts plus complexes que nous commençons cette année.
+                    </p>
+                    <p style="margin-top: 1.5em;">
+                        Pour réussir, j'adopte des stratégies d’apprentissage efficaces, comme la prise de notes détaillée, la révision régulière et la participation active en classe. J’aime aussi faire des recherches indépendantes et relier ce que j’apprends à des applications réelles. Je collabore avec mes camarades et pose des questions pour améliorer ma compréhension.
+                    </p>
+                    <p style="margin-top: 2em;">
+                        <b>Sincèrement,</b>
+                        <br>
+                        <b>André Sidarous</b>
+                    </p>
+                </div>
+
+                <div class="images-stack animate-fadeIn delay-3">
+                    <div class="image-box">
+                        <a href="javascript:void(0)" onclick="openLightbox('https://trellis.net/wp-content/uploads/2024/07/shutterstock_chemicals_antoine2k.jpg', 'Image de produits chimiques')">
+                            <img src="https://trellis.net/wp-content/uploads/2024/07/shutterstock_chemicals_antoine2k.jpg" alt="Image de produits chimiques">
+                        </a>
+                    </div>
+                    <div class="image-box">
+                        <a href="javascript:void(0)" onclick="openLightbox('https://homehealth-uk.com/wp-content/uploads/the-human-body-diagram.jpg', 'Diagramme du corps humain')">
+                            <img src="https://homehealth-uk.com/wp-content/uploads/the-human-body-diagram.jpg" alt="Diagramme du corps humain">
+                        </a>
+                    </div>
+                    <div class="image-box">
+                        <a href="javascript:void(0)" onclick="openLightbox('https://edgeup.asus.com/wp-content/uploads/2015/08/10-Things-you-should-should-not-do-when-building-a-PC.jpg', 'Construction d\'un PC de gaming')">
+                            <img src="https://edgeup.asus.com/wp-content/uploads/2015/08/10-Things-you-should-should-not-do-when-building-a-PC.jpg" alt="Construction d'un PC de gaming">
+                        </a>
+                    </div>
+                    <div class="image-box">
+                        <a href="javascript:void(0)" onclick="openLightbox('https://cdn.shopify.com/s/files/1/0070/5901/3716/files/coding_background.jpg?v=1688538955', 'Code informatique')">
+                            <img src="https://cdn.shopify.com/s/files/1/0070/5901/3716/files/coding_background.jpg?v=1688538955" alt="Code informatique">
+                        </a>
+                    </div>
+                    <div class="image-box">
+                        <a href="javascript:void(0)" onclick="openLightbox('https://www.acne.org/wp-content/uploads/2021/12/accutane-isotretinoin.jpg', 'Pilules d\'Accutane (Isotrétinoïne)')">
+                            <img src="https://www.acne.org/wp-content/uploads/2021/12/accutane-isotretinoin.jpg" alt="Pilules d'Accutane (Isotrétinoïne)">
+                        </a>
+                    </div>
+                    <div class="image-box">
+                        <a href="javascript:void(0)" onclick="openLightbox('https://res.cloudinary.com/jerrick/image/upload/v1509742245/q0l5lwzd91liplir3odz.jpg', 'Étudiant en train d\'étudier')">
+                            <img src="https://res.cloudinary.com/jerrick/image/upload/v1509742245/q0l5lwzd91liplir3odz.jpg" alt="Étudiant en train d'étudier">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="unites" class="bg-secondary">
+        <div class="container">
+            <div class="section-header animate-fadeIn">
+                <h2 class="gradient-text">Unités du Cours</h2>
+                <p>Explorez chaque unité via les boutons ci-dessous.</p>
+            </div>
+            
+            <div style="max-width: 800px; margin: 0 auto;"> 
+                <div class="grid grid-2">
+                    <div class="card animate-fadeIn delay-2">
+                        <img src="https://s3-ap-south-1.amazonaws.com/ricedigitals3bucket/AUPortalContent/2024/06/21130503/Biochemistry-in-the-Modern-Era.jpg" alt="Unité 1">
+                        <h3>Unité 1: Biochimie Cellulaire</h3>
+                        <a href="unite1.html" class="btn btn-primary">Voir l'unité 1</a>
+                    </div>
+                    <div class="card animate-fadeIn delay-3">
+                        <img src="https://media.craiyon.com/2025-04-28/GBNO67q1QZOvHeLSxldICw.webp" alt="Unité 2">
+                        <h3>Unité 2: Processus Métabolique</h3>
+                        <a href="unite2.html" class="btn btn-primary">Voir l'unité 2</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-3" style="margin-top:2rem;">
+                <div class="card animate-fadeIn delay-4">
+                    <img src="https://online.stanford.edu/sites/default/files/inline-images/foundations-of-genetics-and-genomics.jpg" alt="Unité 3">
+                    <h3>Unité 3: Génétique Moléculaire</h3>
+                    <a href="unite3.html" class="btn btn-primary">Voir l'unité 3</a>
+                </div>
+                <div class="card animate-fadeIn delay-5">
+                    <img src="https://www.biologyonline.com/wp-content/uploads/2020/02/Physiological-Homeostasis.jpg" alt="Unité 4">
+                    <h3>Unité 4: Homéostasie</h3>
+                    <a href="unite4.html" class="btn btn-primary">Voir l'unité 4</a>
+                </div>
+                <div class="card animate-fadeIn delay-6">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwq5TTnh2ctb043wy68tPFDqpzuGIvgapS1w&s" alt="Unité 5">
+                    <h3>Unité 5: Dynamique Des Populations</h3>
+                    <a href="unite5.html" class="btn btn-primary">Voir l'unité 5</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="carte">
+        <div class="container">
+            <div class="section-header animate-fadeIn">
+                <h2 class="gradient-text">Carte Conceptuelle</h2>
+            </div>
+            <img src="https://www.researchgate.net/profile/George-Bogdanov/publication/329642859/figure/fig1/AS:716320555761152@1548871360560/Example-of-a-concept-map-Illustration-of-how-concepts-are-organized-in-the-map.png" alt="Carte Conceptuelle" class="animate-fadeIn delay-2" style="width:100%; border-radius:1rem; box-shadow:var(--shadow-card);">
+        </div>
+    </section>
+
+    <section id="collage" class="bg-secondary">
+        <div class="container">
+            <div class="section-header animate-fadeIn">
+                <h2 class="gradient-text">Collage Photo</h2>
+                <p>Un collage illustrant mes projets et expériences au cours de l'année.</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card animate-fadeIn delay-2">
+                    <a href="javascript:void(0)" onclick="openLightbox('https://cdn.pixabay.com/photo/2017/08/01/08/29/laboratory-2567046_1280.jpg', 'Expérience en laboratoire')">
+                        <img src="https://cdn.pixabay.com/photo/2017/08/01/08/29/laboratory-2567046_1280.jpg" alt="Projet 1">
+                    </a>
+                    <h3>Projet 1: Expérience en laboratoire</h3>
+                </div>
+                <div class="card animate-fadeIn delay-3">
+                    <a href="javascript:void(0)" onclick="openLightbox('https://cdn.pixabay.com/photo/2018/01/15/07/51/microscope-3084405_1280.jpg', 'Microscopie')">
+                        <img src="https://cdn.pixabay.com/photo/2018/01/15/07/51/microscope-3084405_1280.jpg" alt="Projet 2">
+                    </a>
+                    <h3>Projet 2: Microscopie</h3>
+                </div>
+                <div class="card animate-fadeIn delay-4">
+                    <a href="javascript:void(0)" onclick="openLightbox('https://cdn.pixabay.com/photo/2017/02/01/11/36/biology-2034982_1280.jpg', 'Analyse de données biologiques')">
+                        <img src="https://cdn.pixabay.com/photo/2017/02/01/11/36/biology-2034982_1280.jpg" alt="Projet 3">
+                    </a>
+                    <h3>Projet 3: Analyse de données biologiques</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lettre-cloture">
+        <div class="container">
+            <div class="section-header animate-fadeIn">
+                <h2 class="gradient-text">Lettre de Clôture</h2>
+            </div>
+            <div class="letter-box animated-border animate-fadeIn delay-2">
+                <p>Merci d'avoir consulté mon portfolio. J'espère que cette présentation vous a permis de mieux comprendre mes apprentissages et mes projets au cours de cette année.</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-btn">&times;</span> 
+        <img class="lightbox-content" id="lightboxImage" onclick="event.stopPropagation()">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        
+        // Nouvelle fonction pour ouvrir la Lightbox
+        function openLightbox(imageSrc, altText) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            
+            lightbox.style.display = "block";
+            lightboxImage.src = imageSrc;
+            
+            // Empêche le défilement de la page principale
+            document.body.style.overflow = "hidden";
+        }
+
+        // Nouvelle fonction pour fermer la Lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = "none";
+            
+            // Rétablit le défilement de la page principale
+            document.body.style.overflow = "auto";
+        }
+
+        // Fonctions de navigation existantes
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+<script src="https://static.app/js/static.js" type="text/javascript"></script>
+</body>
+</html>

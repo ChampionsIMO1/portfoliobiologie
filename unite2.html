@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unité 2 : Processus Métaboliques - Portfolio SBI4U</title>
+    <meta name="description" content="Contenu détaillé de l'Unité 2 sur les Processus Métaboliques pour le portfolio de biologie SBI4U.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Styles pour cohérence avec index.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: 220 15% 10%;
+            --foreground: 180 10% 95%; /* Texte principal (clair/blanc) */
+            --card: 220 15% 12%;
+            --card-foreground: 180 10% 95%;
+            --primary: 160 80% 45%; /* Greenish-Cyan */
+            --primary-foreground: 220 15% 10%;
+            --secondary: 180 25% 20%;
+            --secondary-foreground: 180 10% 95%;
+            --muted: 220 15% 18%;
+            --muted-foreground: 180 10% 95%; 
+            --accent: 140 70% 50%; /* Brighter Green */
+            --border: 220 15% 20%;
+            --ring: 160 80% 45%;
+
+            --gradient-primary: linear-gradient(135deg, hsl(160 80% 45%), hsl(140 70% 50%));
+            --shadow-glow: 0 0 15px hsl(160 80% 45% / 0.3);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+            padding-top: 5rem;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Navigation */
+        nav { position: fixed; top:0; left:0; right:0; z-index:1000; background-color:hsl(var(--background)/0.95); backdrop-filter:blur(12px); box-shadow:0 4px 20px hsl(220 15% 5% / 0.3);}
+        .nav-content { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.5rem; }
+        .logo { font-size:1.5rem; font-weight:700; cursor:pointer; }
+        
+        /* Buttons and Links */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+        .btn-primary { background: var(--gradient-primary); color: hsl(var(--primary-foreground)); }
+        .btn-primary:hover { box-shadow: var(--shadow-glow); transform: translateY(-1px); }
+        .btn-outline { background: transparent; border: 1px solid hsl(var(--primary)/0.3); color: hsl(var(--foreground)); }
+        .btn-outline:hover { background: hsl(var(--primary)/0.1); border-color: hsl(var(--primary)/0.5); }
+
+        /* Headings */
+        .section-header { text-align: center; margin-bottom: 3rem; padding-top: 2rem;}
+        .section-header h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 0.5rem; }
+        .section-header p { 
+            font-size: 1.125rem; 
+            color: hsl(var(--foreground)); 
+            max-width: 42rem; 
+            margin: 0 auto; 
+        }
+        
+        /* Cards and Layouts */
+        .grid { display: grid; gap: 2rem; margin-bottom: 3rem; }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); } 
+        
+        /* GRILLES INTERNES */
+        .inner-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Deux colonnes pour la carrière */
+            gap: 1.5rem; 
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .inner-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* Trois colonnes pour la scientifique */
+            gap: 1.5rem; 
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .inner-grid-item {
+            padding: 0.5rem 0; 
+            display: block; 
+        }
+        
+        .full-span { grid-column: 1 / -1; } 
+
+        .card { 
+            background: hsl(var(--card)); 
+            border: 1px solid hsl(var(--border)); 
+            border-radius: 1rem; 
+            padding: 2rem; 
+            transition: all 0.3s; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            text-align: left;
+            height: auto; 
+        }
+        
+        .card:hover { border-color: hsl(var(--primary)/0.5); box-shadow: var(--shadow-glow); transform: translateY(-2px); }
+        
+        .card h4 { font-size: 1.4rem; font-weight: 600; margin-bottom: 0.75rem; color: hsl(var(--accent)); }
+        .card h5 { font-size: 1.1rem; font-weight: 600; margin-top: 1rem; color: hsl(var(--primary)); }
+        .card p { color: hsl(var(--foreground)); margin-bottom: 1rem; } 
+        .card ul { list-style: none; padding-left: 0; margin-top: 0.5rem; }
+        .card li { 
+            position: relative; 
+            padding-left: 1.5rem; 
+            margin-bottom: 0.5rem; 
+            color: hsl(var(--foreground)); 
+            font-size: 0.95rem;
+        }
+        .card li::before {
+            content: '•';
+            color: hsl(var(--primary));
+            font-weight: 600; 
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        /* Introduction Spécifique (centrage des sous-titres) */
+        .intro-section-header {
+            text-align: center;
+        }
+
+        /* Styles spécifiques aux médias intégrés (vidéo / carte conceptuelle) */
+        .media-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Default 16:9 aspect ratio for videos */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid hsl(var(--border));
+        }
+        .map-card .media-container {
+            padding-bottom: 75%; /* Ratio 4:3 for the map */
+        }
+        .media-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        /* Styles Spécifiques pour les Boîtes d'Images */
+        .image-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .image-box {
+            width: 100%;
+            padding-bottom: 56.25%; /* Ratio 16:9 - Hauteur par défaut */
+            height: 0; 
+            background-color: hsl(var(--secondary));
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: hsl(var(--primary));
+            font-weight: 600;
+            border: 2px solid hsl(var(--border));
+            overflow: hidden;
+            position: relative; 
+        }
+
+        .image-box img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Clé pour ajuster l'image entière dans la boîte sans couper */
+            object-fit: contain; 
+            display: block;
+        }
+        
+        /* Ajustement pour l'image du Dr Harper (qui est carrée) */
+        .scientist-photo {
+            width: 200px; 
+            height: 200px; 
+            border-radius: 50%; /* Rond */
+            object-fit: cover; /* Conserver 'cover' pour les portraits */
+            border: 3px solid hsl(var(--primary));
+            margin: 2rem auto 1rem 0; 
+            display: block;
+        }
+
+        /* Ajustement pour l'image de l'Endocrinologue */
+        .endocrinologist-photo {
+            width: 100%;
+            height: 180px; /* Hauteur fixe pour un aperçu */
+            object-fit: cover; /* Conserver 'cover' pour les photos de scène */
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid hsl(var(--border));
+        }
+
+        /* Styles pour la photo du laboratoire */
+        .lab-banner {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            border: 1px solid hsl(var(--border));
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            display: block;
+        }
+
+        /* Conteneur de la carte scientifique pour le positionnement relatif du logo */
+        .scientist-card {
+            position: relative; /* Important pour positionner le logo */
+        }
+
+        /* Style pour le logo uOttawa (ENCORE PLUS GRAND & PLUS À GAUCHE) */
+        .uottawa-logo {
+            position: absolute;
+            /* Top recalculé pour centrer le logo (estimation 80px de haut) avec la photo (200px de haut, marge 2rem) */
+            top: 92px; /* 2rem (32px) + 100px (moitié photo) - 40px (moitié logo) = 92px */
+            right: 2.5rem; /* Augmenté de 1.5rem à 2.5rem pour le déplacer plus à gauche */
+            max-width: 250px; /* Augmenté de 200px à 250px pour qu'il soit plus grand */
+            height: auto;
+            z-index: 1; 
+            opacity: 0.8; 
+        }
+        
+        /* Styles pour les cartes Historique et Informations Pertinentes */
+        .detailed-card h5 {
+            font-size: 1.25rem; 
+            color: hsl(var(--accent));
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .detailed-card p {
+            font-size: 1.05rem; 
+            color: hsl(var(--foreground)); 
+            margin-bottom: 1.5rem;
+            line-height: 1.7; 
+        }
+        
+        /* Timeline Items */
+        .timeline-item { 
+            border-left: 3px solid hsl(var(--primary)); 
+            padding-left: 1rem; 
+            margin-bottom: 1.5rem; 
+        }
+        .timeline-item span { 
+            color: hsl(var(--primary)); 
+            display: block; 
+            margin-bottom: 0.25rem; 
+            font-weight: 600; 
+            font-size: 1.1rem;
+        }
+        .timeline-item ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-item ul li {
+            font-size: 1.05rem; 
+            color: hsl(var(--foreground));
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .timeline-item ul li::before {
+            content: '•'; 
+            color: hsl(var(--accent));
+            font-weight: 600;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Styles spécifiques pour l'analyse d'articles */
+        .article-content {
+            margin-bottom: 1rem;
+            color: hsl(var(--foreground));
+        }
+        .article-content p {
+            margin-bottom: 0.75rem;
+            color: inherit;
+        }
+        
+        /* Class for highlighting key terms (remplacement de **) */
+        .highlight-term {
+            color: hsl(var(--primary));
+            font-weight: 600;
+        }
+        
+        /* Style pour la phrase de conclusion pour la distinguer dans le paragraphe */
+        .article-conclusion-inline {
+            display: block; 
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px dashed hsl(var(--border));
+            font-style: italic;
+            color: hsl(var(--foreground));
+        }
+
+        /* Bibliographie */
+        .bibliography-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 2rem;
+            text-align: left;
+            font-size: 0.9rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .bibliography-list li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.5rem;
+            color: hsl(var(--foreground)); 
+            border-bottom: 1px dotted hsl(var(--border));
+            padding-bottom: 0.75rem;
+        }
+        .bibliography-list li a {
+            color: hsl(var(--primary));
+            text-decoration: underline;
+            word-break: break-all;
+        }
+        .bibliography-list li::before {
+            content: '➤';
+            color: hsl(var(--primary));
+            font-weight: 600;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Styles spécifiques pour les images ajoutées après un paragraphe pour la thermodynamique */
+        .thermo-image {
+            width: 100%;
+            max-width: 600px; 
+            height: auto;
+            border-radius: 0.5rem;
+            border: 1px solid hsl(var(--border));
+            margin: 1.5rem auto; /* Centrer l'image */
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-content { flex-direction: column; align-items: flex-start; }
+            .nav-content a { margin-top: 0.5rem; }
+            .grid-2 { grid-template-columns: 1fr; } 
+            .inner-grid-2, .inner-grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .scientist-photo {
+                margin: 1rem auto; /* Centrer en mobile pour les deux */
+            }
+            .uottawa-logo {
+                top: 0.5rem; /* Revenir au top-right pour mobile */
+                right: 0.5rem;
+                max-width: 120px; /* Taille ajustée pour les petits écrans */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <div class="logo gradient-text">Unité 2 : Processus Métaboliques</div>
+            <a href="index.html" class="btn btn-outline">Retour au Portfolio</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="section-header">
+            <h2 class="gradient-text">Unité 2 : Les Processus Métaboliques</h2>
+            <p>Le métabolisme est la somme de toutes les réactions chimiques qui assurent la croissance, la reproduction et le maintien de la vie.</p>
+            <div style="width: 100%; max-width: 800px; margin: 1.5rem auto 0;">
+                <img src="https://askthescientists.com/wp-content/uploads/2019/03/AdobeStock_188848103-835x528.jpg" alt="Schéma d'une cellule avec les principaux processus métaboliques" style="width: 100%; height: auto; border-radius: 0.5rem; border: 1px solid hsl(var(--border));">
+            </div>
+        </header>
+
+        <div class="card" style="margin-bottom: 3rem;">
+            <h4 style="font-size: 1.8rem; text-align: center; width: 100%;" class="gradient-text">Introduction au Métabolisme</h4>
+            <p style="font-size: 1.1rem; color: hsl(var(--foreground)); margin-top: 1rem;">
+                Les processus métaboliques regroupent toutes les réactions chimiques qui ont lieu dans les cellules d’un organisme vivant. Ces réactions permettent de transformer l’énergie et la matière pour assurer la croissance, la reproduction et le maintien de la vie. Le métabolisme est divisé en deux types de réactions :
+            </p>
+            
+            <div class="grid grid-2" style="width: 100%;">
+                <div class="image-card" style="padding-top: 1rem;">
+                    <h5 style="color: hsl(var(--primary)); margin-bottom: 0.5rem;">Le Catabolisme</h5>
+                    <div class="image-box">
+                        <img src="https://cdn1.byjus.com/wp-content/uploads/2017/08/Catabolism-1-700x351.png" alt="Schéma illustrant le catabolisme : les grandes molécules sont décomposées en petites pour libérer de l'énergie.">
+                    </div>
+                    <p style="font-size: 0.95rem;">Qui dégrade les grosses molécules (comme le glucose) pour libérer de l’énergie (ATP).</p>
+                </div>
+                
+                <div class="image-card" style="padding-top: 1rem;">
+                    <h5 style="color: hsl(var(--primary)); margin-bottom: 0.5rem;">L'Anabolisme</h5>
+                    <div class="image-box"> 
+                        <img 
+                            src="https://antranik.org/wp-content/uploads/2024/10/anabolism.gif" 
+                            alt="Schéma illustrant l'anabolisme : les petites molécules sont assemblées en grandes, nécessitant de l'énergie (ATP)."
+                            loading="lazy">
+                    </div>
+                    <p style="font-size: 0.95rem;">Qui utilise cette énergie pour construire des molécules complexes nécessaires à la cellule.</p>
+                </div>
+            </div>
+
+            <p style="font-size: 1.05rem; margin-top: 1.5rem; color: hsl(var(--foreground));">
+                Ces transformations sont régies par les lois de la thermodynamique : l’énergie ne peut pas être créée ni détruite, seulement transformée. Par exemple, lors de la respiration cellulaire, le glucose est oxydé pour produire du dioxyde de carbone, de l’eau et de l’ATP, tant que la photosynthèse transforme le dioxyde de carbone, l’eau et l’énergie lumineuse en glucose et l’oxygène. Ces deux processus sont complémentaires et essentiels au cycle énergétique de la vie sur Terre.
+            </p>
+
+            <img src="https://www.thoughtco.com/thmb/d5qvQcrYIBm9fKIIUT0j3k3apjI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/biology_thermodynamics-584ef5785f9b58a8cd3da04e.jpg" 
+                 alt="Illustration des deux lois de la thermodynamique : la conservation de l'énergie et l'augmentation de l'entropie." 
+                 class="thermo-image">
+            </div>
+
+        <div style="margin-bottom: 2rem;">
+            <div class="card scientist-card">
+                <h4 style="margin-bottom: 0;">Scientifique Ontarienne : Dr. Mary-Ellen Harper</h4>
+                
+                <img src="https://www.uottawa.ca/about-us/sites/g/files/bhrskd336/files/2025-05/uOttawa_logo-wb_dark-grey.png" alt="Logo de l'Université d'Ottawa" class="uottawa-logo">
+
+                <img src="https://www.uottawa.ca/faculty-medicine/sites/g/files/bhrskd401/files/2023-12/Mary-Ellen-fixed-500x500.jpg" alt="Portrait de la Docteure Mary-Ellen Harper" class="scientist-photo">
+
+                <div class="inner-grid-3">
+                    
+                    <div class="inner-grid-item">
+                        <h5>Introduction</h5>
+                        <p>Dr. Mary-Ellen Harper est une scientifique canadienne reconnue mondialement pour ses travaux sur le métabolisme cellulaire. Basée à l’Université d’Ottawa en Ontario, elle dirige un laboratoire spécialisé dans l’étude de la <span class="highlight-term">bioénergétique mitochondriale</span> (la manière dont les mitochondries produisent et gèrent l’énergie cellulaire).</p>
+                        <p style="font-size: 0.95rem; color: hsl(var(--foreground)); margin-top: 0.5rem;">Dr Harper a aussi développé des méthodes pour mesurer la capacité des mitochondries à consommer l’oxygène et à produire de l’énergie. Ses recherches ont contribué à comprendre pourquoi certaines personnes ont un métabolisme plus efficace ou moins efficace.</p>
+                    </div>
+
+                    <div class="inner-grid-item">
+                        <h5>Son travail se concentre principalement sur :</h5>
+                        <ul>
+                            <li>la respiration mitochondriale</li>
+                            <li>la production d’ATP</li>
+                            <li>le métabolisme dans l’obésité et le diabète</li>
+                            <li>l’étude des enzymes de régulation métabolique</li>
+                            <li>la mesure de l’efficacité énergétique des cellules</li>
+                        </ul>
+                    </div>
+
+                    <div class="inner-grid-item">
+                        <h5 style="font-size: 1rem;">Distinctions :</h5>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Chaire de recherche du Canada de niveau 1 (2024–2031)</li>
+                            <li>Lifetime Achievement Award, Diabetes Canada (2021)</li>
+                            <li>University Research Chair in Mitochondrial Bioenergetics (2016–2024)</li>
+                            <li>Membre du College of Reviewers, Instituts de recherche en santé du Canada (CIHR)</li>
+                            <li>Chercheuse invitée, Harvard Medical School (2014)</li>
+                            <li>Prix John Charles Polanyi – Physiologie et Médecine (1995)</li>
+                            <li>Premier’s Research Excellence Award (2000)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <img src="https://static.wixstatic.com/media/70960e_c6bdf3a5077f4c12bb6d59f730d3d86d~mv2.jpg/v1/fit/w_1128,h_777,q_90,enc_avif,quality_auto/70960e_c6bdf3a5077f4c12bb6d59f730d3d86d~mv2.jpg" 
+                    alt="Photo du Laboratoire de recherche du Dr. Mary-Ellen Harper" 
+                    class="lab-banner">
+            </div>
+        </div>
+
+        <div style="margin-bottom: 3rem;">
+            <div class="card">
+                <h4 style="margin-bottom: 0;">Recherche de Carrières : Endocrinologue 🩺</h4>
+
+                <img src="https://physiciansallianceofconnecticut.com/wp-content/uploads/2024/12/AdobeStock_1100505849-scaled.jpeg" alt="Image d'un endocrinologue en consultation ou effectuant des tests métaboliques." class="endocrinologist-photo">
+                
+                <div class="inner-grid-2">
+                    
+                    <div class="inner-grid-item">
+                        <h5>Responsabilités principales :</h5>
+                        <p>Un endocrinologue est un médecin spécialisé dans le diagnostic, le traitement et la prévention des troubles liés aux hormones et au métabolisme. Les hormones sont des messagers chimiques essentiels qui régulent la production d’énergie, le stockage des graisses, et le métabolisme général dans le corps.</p>
+                        
+                        <ul style="margin-top: 1rem;">
+                            <li>Diagnostiquer et traiter les troubles hormonaux (diabète, thyroïde, obésité).</li>
+                            <li>Suivre le métabolisme du glucose, des lipides et des protéines chez les patients.</li>
+                            <li>Prescrire et ajuster des traitements qui influencent le métabolisme.</li>
+                            <li>Interpréter les résultats de laboratoire complexes (hormones, glycémie, marqueurs métaboliques).</li>
+                            <li>Éduquer les patients sur l’alimentation et le mode de vie.</li>
+                            <li>Collaborer avec d’autres professionnels de la santé.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="inner-grid-item" style="display: flex; flex-direction: column;">
+                        <h5>Exigences & Salaire :</h5>
+                        <ul>
+                            <li>Un baccalauréat et une année préparatoire aux études médicales sont habituellement exigés.</li>
+                            <li>Diplôme d’une faculté de médecine reconnue et une formation dans une spécialisation sont exigés.</li>
+                            <li>Réussite aux examens du Collège royal des médecins et chirurgiens du Canada et un permis d'exercice provincial ou territorial sont exigés.</li>
+                        </ul>
+                        <p style="margin-top: 1rem; font-size: 0.95rem;">
+                            Salaire Moyen (Ontario) : 
+                            <span class="gradient-text" style="font-size: 1.1rem; font-weight: 700;">292 341 $</span> 
+                            <span style="font-size: 0.85rem;">(Bas: 109 894 $ / Haut: 592 760 $)</span>
+                        </p>
+                        <a href="https://www.jobbank.gc.ca/marketreport/summary-occupation/3976/ca" target="_blank" class="btn btn-primary" style="width: 100%; margin-top: auto;">Voir les détails de carrière</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="gradient-text section-header" style="margin-bottom: 1rem; margin-top: 1rem;">Ressources Vidéo Clés 📹</h3>
+        <div class="grid grid-2">
+            <div class="card video-card">
+                <h4 style="text-align: center;">Vidéo 1 : La Respiration Cellulaire</h4>
+                <div class="media-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/inddRD24G3w" 
+                        title="Vidéo YouTube - La Respiration Cellulaire (Inserm)" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <p style="font-size: 0.9rem; margin-top: -0.5rem; margin-bottom: 0.5rem; color: hsl(var(--foreground));">URL: https://www.youtube.com/watch?v=inddRD24G3w</p>
+                <a href="https://www.youtube.com/watch?v=inddRD24G3w" target="_blank" class="btn btn-outline" style="width: 100%; margin-top: auto;">Voir en plein écran (YouTube)</a>
+            </div>
+            
+            <div class="card video-card">
+                <h4 style="text-align: center;">Vidéo 2 : Cellular Respiration Overview</h4>
+                <div class="media-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/3Hxwzf7Alcw" 
+                        title="Vidéo YouTube - Cellular Respiration Overview" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <p style="font-size: 0.9rem; margin-top: -0.5rem; margin-bottom: 0.5rem; color: hsl(var(--foreground));">URL: https://www.youtube.com/watch?v=3Hxwzf7Alcw</p>
+                <a href="https://www.youtube.com/watch?v=3Hxwzf7Alcw" target="_blank" class="btn btn-outline" style="width: 100%; margin-top: auto;">Voir en plein écran (YouTube)</a>
+            </div>
+        </div>
+
+        <h3 class="gradient-text section-header" style="margin-bottom: 1rem; margin-top: 3rem;">Carte Conceptuelle Interactive 🗺️</h3>
+        <div class="grid grid-2"> 
+            <div class="card map-card full-span">
+                <h4 style="text-align: center;">Aperçu de la Carte Conceptuelle</h4>
+                <div class="media-container">
+                    <iframe 
+                        src="https://mymap.ai/share/biologie--unit--overview-bGlAEGcjnqDwF" 
+                        title="Carte Conceptuelle Biologie Unité 2" 
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <p style="font-size: 0.9rem; margin-top: -0.5rem; color: hsl(var(--foreground));">Visualisez l'organisation des concepts clés de l'unité. (Note : Si la carte n'apparaît pas, le site source empêche l'intégration dans des cadres iframe).</p>
+                <a href="https://mymap.ai/share/biologie--unit--overview-bGlAEGcjnqDwF" target="_blank" class="btn btn-primary" style="width: 100%; margin-top: auto;">Voir la Carte sur le Site Original (Toute la Page)</a>
+            </div>
+        </div>
+
+        <div class="grid grid-2">
+            <div class="card detailed-card timeline-card">
+                <h4>Historique des Découvertes Clés</h4>
+                <div class="image-box" style="padding-bottom: 50%; margin-bottom: 1.5rem;">
+                    <img src="https://biologydictionary.net/wp-content/uploads/2021/01/1-4.jpg" alt="Illustration historique de la découverte d'une étape métabolique, potentiellement le cycle de Krebs.">
+                </div>
+                <div class="timeline-item">
+                    <span>1600s</span>
+                    <ul>
+                        <li>Jan Baptista van Helmont découvre que les réactions du corps impliquent des transformations de matière.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <span>1800s</span>
+                    <ul>
+                        <li>Louis Pasteur découvre la fermentation.</li>
+                        <li>Découverte des enzymes, des protéines qui accélèrent les réactions métaboliques.</li>
+                        <li>Eduard Buchner démontre que des enzymes peuvent fonctionner en dehors des cellules.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <span>1900s</span>
+                    <ul>
+                        <li>Découverte du Cycle de Krebs (par Hans Krebs en 1937).</li>
+                        <li>Identification de la Glycolyse (par 3 scientifiques).</li>
+                        <li>Découverte de la Chaîne de transport des électrons (par Albert Lehninger).</li>
+                        <li>Meilleure compréhension du métabolisme et des hormones (insuline, glucagon).</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <span>2000s</span>
+                    <ul>
+                        <li>Études sur l’obésité, le diabète, et la résistance à l’insuline, approfondissant notre connaissance des régulations métaboliques complexes.</li>
+                    </ul>
+                </div>
+                
+            </div>
+
+            <div class="card detailed-card">
+                <h4>Informations Pertinentes 🔬</h4>
+                <div class="image-box" style="padding-bottom: 50%; margin-bottom: 1.5rem;">
+                    <img src="https://d20khd7ddkh5ls.cloudfront.net/electron_carriers.png" alt="Schéma illustrant les transporteurs d'électrons comme le NADH et le FADH2.">
+                </div>
+
+                <h5>1. Les Intermédiaires Métaboliques comme Signaux</h5>
+                <p>Le métabolisme produit constamment des <span class="highlight-term">intermédiaires métaboliques</span> (comme le NADH, FADH₂, acétyl-CoA) qui ne sont pas seulement des produits temporaires. Ils agissent aussi comme des signaux qui indiquent à la cellule si elle doit augmenter ou ralentir certaines voies métaboliques. Ce sont des régulateurs cruciaux.</p>
+
+                <h5>2. Le Rôle Anabolique des Voies Cataboliques</h5>
+                <p>La glycolyse et la respiration cellulaire ne servent pas seulement à produire de l’énergie. Plusieurs de leurs intermédiaires sont détournés pour fabriquer des molécules complexes comme des acides aminés, des nucléotides et même des lipides, illustrant l'interconnexion entre catabolisme et anabolisme.</p>
+
+                <h5>3. L'ADN et la Division Mitochondriale</h5>
+                <p>Les mitochondries, souvent appelées les "centrales énergétiques" de la cellule, possèdent leur propre ADN et peuvent se diviser seules. Cela leur permet d’augmenter en nombre (biogenèse mitochondriale) lorsque la demande énergétique de la cellule augmente (par exemple, lors d'un entraînement sportif intensif ou pendant la croissance).</p>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h3 class="gradient-text">Analyse d'Articles</h3>
+        </div>
+        <div class="grid grid-2">
+            <div class="card">
+                <h4>Analyse Article 1 : CREB3 et Régulation</h4>
+                <div class="image-box" style="padding-bottom: 50%;">
+                    <img src="https://www.uoguelph.ca/cbs/sites/default/files/styles/large/public/Briana%20Locke%20-%201140x570.png?itok=vLGYCfw5" alt="Image de la chercheuse Briana Locke étudiant la régulation métabolique.">
+                </div>
+                <p class="text-sm italic mb-2" style="margin-top: 1rem;">Source: <a href="https://www.uoguelph.ca/cbs/news/2024/06/uncovering-piece-metabolism-puzzle-study-reveals-novel-regulator-energy-metabolism" target="_blank" style="color: hsl(var(--primary));">uoguelph.ca/cbs/news</a></p>
+                
+                <div class="article-content">
+                    <p>Cet article présente une découverte importante concernant la régulation du métabolisme cellulaire. Les scientifiques ont étudié une protéine appelée <span class="highlight-term">CREB3</span>, connue pour son rôle dans la réponse au stress cellulaire. Ils ont découvert que cette protéine régule aussi l’équilibre énergétique dans l’organisme. Chez des souris déficientes en CREB3, les chercheurs ont observé une <span class="highlight-term">résistance à la prise de poids</span>, même avec un régime riche en graisses. Cela suggère que CREB3 influence la façon dont le corps gère la conversion de l’énergie et le stockage des lipides.
+
+                    De plus, ils ont montré que CREB3 peut se lier au gène <span class="highlight-term">PGC-1α</span>, un régulateur clé de l’activité mitochondriale. Cela signifie que CREB3 peut <span class="highlight-term">réduire la production d’énergie cellulaire</span> en diminuant l’expression de PGC-1α.
+                        <span class="article-conclusion-inline">En conclusion, je trouve que cet article est <span class="highlight-term">fascinant</span>, car il montre que le métabolisme n’est pas simplement une série de réactions chimiques, mais un réseau de régulations complexes entre les gènes et les enzymes.</span>
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <h4>Analyse Article 2 : Métabolisme et Cycle Cellulaire</h4>
+                <div class="image-box" style="padding-bottom: 50%;">
+                    <img src="https://ars.els-cdn.com/content/image/1-s2.0-S0891584920315963-fx1.jpg" alt="Schéma illustrant la régulation du cycle cellulaire et du métabolisme par l'alarmone.">
+                </div>
+                <p class="text-sm italic mb-2" style="margin-top: 1rem;">Source: <a href="https://www.medecinesciences.org/en/articles/medsci/full_html/2016/09/medsci20163210p843/medsci20163210p843.html" target="_blank" style="color: hsl(var(--primary));">medecinesciences.org</a></p>
+                
+                <div class="article-content">
+                    <p>Cet article explique comment les bactéries coordonnent leur métabolisme et leur cycle cellulaire pour survivre dans des environnements changeants. Les scientifiques montrent que les bactéries ne lancent pas la réplication ou la division cellulaire tant que leur niveau d’énergie et leurs ressources métaboliques ne sont pas suffisantes. 
+
+                    Une molécule clé dans ce processus est l’<span class="highlight-term">alarmone</span>, produite lorsque la cellule manque de nutriments. Cette molécule peut bloquer différentes étapes du cycle cellulaire. En effet, elle empêche l’initiation de la réplication en inhibant la protéine <span class="highlight-term">DnaA</span>, puis elle pourrait ralentir ou même empêcher la séparation des chromosomes.
+                        <span class="article-conclusion-inline">En conclusion, je trouve cet article <span class="highlight-term">intéressant</span>, car il montre que le métabolisme n’est pas seulement pour l’énergie, mais une processus qui peut aussi contrôler les étapes du cycle cellulaire.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="section-header" style="margin-top: 4rem; padding-bottom: 4rem;">
+            <h3 class="gradient-text">Bibliographie de l'Unité 2</h3>
+            <ul class="bibliography-list">
+                <li>Canada, E. and S. D. (2025, September 16). Endocrinologist in Canada: Labour market facts and figures - job bank. Endocrinologist in Canada | Labour Market Facts and Figures - Job Bank. <a href="https://www.jobbank.gc.ca/marketreport/summary-occupation/3976/ca" target="_blank">https://www.jobbank.gc.ca/marketreport/summary-occupation/3976/ca</a></li>
+                <li>Chaudhuri, Dr. A. K. (2018, January 19). Joan Baptista van Helmont: The first pneumatic chemist. Cooking Cosmos. <a href="https://asischaudhuri.wordpress.com/2018/01/19/joan-baptista-van-helmont-the-first-pneumatic-chemist/" target="_blank">https://asischaudhuri.wordpress.com/2018/01/19/joan-baptista-van-helmont-the-first-pneumatic-chemist/</a></li>
+                <li>Dr. Mary-Ellen Harper. Faculty of Medicine. (n.d.). <a href="https://www.uottawa.ca/faculty-medicine/directory/dr-mary-ellen-harper" target="_blank">https://www.uottawa.ca/faculty-medicine/directory/dr-mary-ellen-harper</a></li>
+                <li>Eduard Buchner | Nobel Prize, Fermentation & yeast experiments | britannica. (n.d.). <a href="https://www.britannica.com/biography/Eduard-Buchner" target="_blank">https://www.britannica.com/biography/Eduard-Buchner</a></li>
+                <li>Gruning, N.-M., & Ralser, M. (n.d.). Glycolysis: How a 300yr long research journey that started with the desire to improve alcoholic beverages kept revolutionizing biochemistry. ScienceDirect. <a href="https://www.sciencedirect.com/science/article/abs/pii/S2452310021000743" target="_blank">https://www.sciencedirect.com/science/article/abs/pii/S2452310021000743</a></li>
+                <li>Hallez, R. (2016, October 19). Métabolisme et cycle cellulaire, Deux Processus interconnectés chez les bactéries. médecine/sciences. <a href="https://www.medecinesciences.org/en/articles/medsci/full_html/2016/09/medsci20163210p843/medsci20163210p843.html" target="_blank">https://www.medecinesciences.org/en/articles/medsci/full_html/2016/09/medsci20163210p843/medsci20163210p843.html</a></li>
+                <li>Khan Academy. (n.d.). Khan Academy. <a href="https://fr.khanacademy.org/science/biologie-a-l-ecole/x5047ff3843d876a6:bio-3e-annee-science-de-base/x5047ff3843d876a6:bio-3-1h-le-metabolisme/a/overview-of-metabolism" target="_blank">https://fr.khanacademy.org/science/biologie-a-l-ecole/x5047ff3843d876a6:bio-3e-annee-science-de-base/x5047ff3843d876a6:bio-3-1h-le-metabolisme/a/overview-of-metabolism</a></li>
+                <li>Laboratory: The harper lab, University of Ottawa: Ontario. The Harper Lab. (n.d.). <a href="https://www.theharperlab.com/" target="_blank">https://www.theharperlab.com/</a></li>
+                <li>Mukherjee, S. (2023, February 2). Electron transport chain: Definition, steps, and diagram. Science Facts. <a href="https://www.sciencefacts.net/electron-transport-chain.html" target="_blank">https://www.sciencefacts.net/electron-transport-chain.html</a></li>
+                <li>Nobel prize in physiology or medicine 1953. NobelPrize.org. (n.d.). <a href="https://www.nobelprize.org/prizes/medicine/1953/krebs/biographical/" target="_blank">https://www.nobelprize.org/prizes/medicine/1953/krebs/biographical/</a></li>
+                <li>Qu’est-ce que le métabolisme et pourquoi est-il important ? Livi. (2022, October 21). <a href="https://www.livi.fr/en-bonne-sante/qu-est-ce-que-le-metabolisme/" target="_blank">https://www.livi.fr/en-bonne-sante/qu-est-ce-que-le-metabolisme/</a></li>
+                <li>Rania. (2022, June 6). Louis Pasteur : Le père de la fermentation. Tout sur la Levure. <a href="https://www.toutsurlalevure.fr/levure-et-fermentation/louis-pasteur-le-pere-de-la-fermentation/" target="_blank">https://www.toutsurlalevure.fr/levure-et-fermentation/louis-pasteur-le-pere-de-la-fermentation/</a></li>
+                <li>Uncovering a piece to the Metabolism Puzzle: Study reveals novel regulator of Energy Metabolism. Uncovering a Piece to the Metabolism Puzzle: Study Reveals Novel Regulator of Energy Metabolism | College of Biological Science. (n.d.). <a href="https://www.uoguelph.ca/cbs/news/2024/06/uncovering-piece-metabolism-puzzle-study-reveals-novel-regulator-energy-metabolism" target="_blank">https://www.uoguelph.ca/cbs/news/2024/06/uncovering-piece-metabolism-puzzle-study-reveals-novel-regulator-energy-metabolism</a></li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>
