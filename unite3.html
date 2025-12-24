@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unité 3 : Génétique Moléculaire - Portfolio SBI4U</title>
+    <meta name="description" content="Contenu détaillé de l'Unité 3 sur la Génétique Moléculaire pour le portfolio de biologie SBI4U.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --background: 220 15% 10%;
+            --foreground: 180 10% 95%;
+            --card: 220 15% 12%;
+            --primary: 160 80% 45%; 
+            --primary-foreground: 220 15% 10%;
+            --secondary: 180 25% 20%;
+            --accent: 140 70% 50%;
+            --border: 220 15% 20%;
+            --gradient-primary: linear-gradient(135deg, hsl(160 80% 45%), hsl(140 70% 50%));
+            --shadow-glow: 0 0 15px hsl(160 80% 45% / 0.3);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+            padding-top: 5rem;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Navigation */
+        nav { position: fixed; top:0; left:0; right:0; z-index:1000; background-color:hsl(var(--background)/0.95); backdrop-filter:blur(12px); box-shadow:0 4px 20px hsl(220 15% 5% / 0.3);}
+        .nav-content { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.5rem; }
+        .logo { font-size:1.5rem; font-weight:700; cursor:pointer; }
+        
+        .btn { display: inline-block; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 600; text-decoration: none; border-radius: 0.5rem; transition: all 0.3s; cursor: pointer; border: none; text-align: center; }
+        .btn-primary { background: var(--gradient-primary); color: hsl(var(--primary-foreground)); }
+        .btn-primary:hover { box-shadow: var(--shadow-glow); transform: translateY(-1px); }
+        .btn-outline { background: transparent; border: 1px solid hsl(var(--primary)/0.3); color: hsl(var(--foreground)); }
+        .btn-outline:hover { background: hsl(var(--primary)/0.1); border-color: hsl(var(--primary)/0.5); }
+
+        .section-header { text-align: center; margin-bottom: 3rem; padding-top: 2rem;}
+        .section-header h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 0.5rem; }
+        .section-header p { font-size: 1.125rem; color: hsl(var(--foreground)); max-width: 42rem; margin: 0 auto; }
+        
+        .grid { display: grid; gap: 2rem; margin-bottom: 3rem; }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); } 
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        
+        .card { 
+            background: hsl(var(--card)); 
+            border: 1px solid hsl(var(--border)); 
+            border-radius: 1rem; padding: 2rem; 
+            transition: all 0.3s; display: flex; 
+            flex-direction: column; align-items: flex-start; text-align: left;
+            height: 100%;
+        }
+        .card:hover { border-color: hsl(var(--primary)/0.5); box-shadow: var(--shadow-glow); transform: translateY(-2px); }
+        
+        .card h4 { font-size: 1.4rem; font-weight: 600; margin-bottom: 0.75rem; color: hsl(var(--accent)); }
+        .card h5 { font-size: 1.1rem; font-weight: 600; margin-top: 1rem; color: hsl(var(--primary)); }
+        .card p { color: hsl(var(--foreground)); margin-bottom: 1rem; } 
+        
+        .card ul { width: 100%; }
+        
+        /* Default list style */
+        .card li { position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem; font-size: 0.95rem; list-style: none;}
+        .card li::before { content: '•'; color: hsl(var(--primary)); font-weight: 600; position: absolute; left: 0; }
+
+        /* INFORMATIONS PERTINENTES - VERTICAL ALIGNMENT FIX */
+        .info-bullets { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            width: 100%; 
+        }
+        
+        .info-bullets li { 
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Aligne le contenu au milieu verticalement */
+            border-left: 4px solid hsl(var(--primary)); 
+            padding-left: 2.5rem !important; 
+            margin-bottom: 4rem; /* L'interligne demandé */
+            position: relative;
+            min-height: 100px; /* Espace suffisant pour voir le centrage */
+        }
+
+        .info-bullets li::before { 
+            content: '•' !important;
+            color: hsl(var(--primary)); 
+            font-size: 2.5rem;
+            line-height: 1;
+            position: absolute;
+            left: 0.6rem;
+            top: 50%; /* Positionne la puce au milieu */
+            transform: translateY(-50%); /* Ajustement parfait au centre */
+        }
+
+        .info-bullet-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .info-bullets .bullet-title { 
+            color: hsl(var(--primary)); 
+            font-weight: 800; 
+            font-size: 1.2rem; 
+            display: block; 
+            margin-bottom: 0.3rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            line-height: 1.2;
+        }
+
+        .info-bullets li:last-child { margin-bottom: 1rem; }
+
+        .media-container {
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid hsl(var(--border));
+        }
+        .media-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        
+        .image-box {
+            width: 100%; height: 280px; background-color: #000; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid hsl(var(--border)); overflow: hidden; position: relative; 
+        }
+        .image-box img { width: 100%; height: 100%; object-fit: fill; display: block; }
+        .no-stretch img { object-fit: cover !important; }
+
+        .scientist-card { position: relative; }
+        .scientist-photo { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; background-color: #000; border: 3px solid hsl(var(--primary)); margin: 2rem auto 1rem 0; display: block; }
+        .uottawa-logo { position: absolute; top: 92px; right: 2.5rem; max-width: 250px; height: auto; opacity: 1; }
+
+        .timeline-item { border-left: 3px solid hsl(var(--primary)); padding-left: 1rem; margin-bottom: 1.5rem; }
+        .timeline-item span { color: hsl(var(--primary)); display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 1.1rem; }
+
+        .highlight-term { color: hsl(var(--primary)); font-weight: 600; }
+        .article-conclusion-inline { display: block; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px dashed hsl(var(--border)); font-style: italic; }
+
+        .bibliography-list { list-style: none; padding-left: 0; margin-top: 2rem; font-size: 0.9rem; }
+        .bibliography-list li { margin-bottom: 0.75rem; border-bottom: 1px dotted hsl(var(--border)); padding-bottom: 0.75rem; position: relative; padding-left: 1.5rem; word-wrap: break-word; }
+        .bibliography-list li::before { content: '➤'; color: hsl(var(--primary)); position: absolute; left: 0; }
+
+        .inner-box { background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: 0.75rem; padding: 2rem; width: 100%; height: 100%; display: flex; flex-direction: column; }
+
+        @media (max-width: 1024px) {
+            .grid-3 { grid-template-columns: 1fr; }
+            .uottawa-logo { top: 0.5rem; right: 0.5rem; max-width: 120px; }
+            .scientist-photo { margin: 1rem auto; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <div class="logo gradient-text">Unité 3 : Génétique Moléculaire</div>
+            <a href="index.html" class="btn btn-outline">Retour au Portfolio</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="section-header">
+            <h2 class="gradient-text">Unité 3 : La Génétique Moléculaire</h2>
+            <p>Étude de l’organisation et du fonctionnement des gènes au niveau moléculaire, et expression de l’information génétique.</p>
+            
+            <div class="image-box" style="max-width: 800px; margin: 2rem auto 0 auto; height: 400px;">
+                <img src="https://sciencenotes.org/wp-content/uploads/2025/03/Replication-Transcription-and-Translation.png" alt="Génétique Moléculaire">
+            </div>
+        </header>
+
+        <div class="card" style="margin-bottom: 3rem; width: 100%;">
+            <h4 style="font-size: 1.8rem; text-align: center; width: 100%;" class="gradient-text">Introduction</h4>
+            <p style="font-size: 1.1rem; margin-top: 1rem; margin-bottom: 2rem;">
+                La génétique moléculaire étudie l’organisation et le fonctionnement des gènes au niveau moléculaire, et la façon dont l’information génétique est transmise et exprimée dans les cellules. Ces processus permettent à un organisme de croître, de se reproduire, et de maintenir ses fonctions vitales.
+            </p>
+
+            <div class="grid grid-3">
+                <div class="intro-box" style="background: hsl(var(--background)); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid hsl(var(--border));">
+                    <h5><span class="highlight-term">Réplication de l’ADN</span></h5>
+                    <div class="image-box" style="height: 180px;">
+                        <img src="https://www.sciencesetavenir.fr/assets/inline-img/2023/09/17/w453-155912-fourche-de-replication.jpg" alt="Réplication">
+                    </div>
+                    <p style="font-size: 0.95rem;">Copie l’information génétique pour la transmettre aux cellules filles.</p>
+                </div>
+                <div class="intro-box" style="background: hsl(var(--background)); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid hsl(var(--border));">
+                    <h5><span class="highlight-term">Transcription</span></h5>
+                    <div class="image-box" style="height: 180px;">
+                        <img src="https://i.ytimg.com/vi/VQJKDgpRcnI/maxresdefault.jpg" alt="Transcription">
+                    </div>
+                    <p style="font-size: 0.95rem;">Copie un gène en ARN messager (ARNm) pour servir de modèle à la synthèse des protéines.</p>
+                </div>
+                <div class="intro-box" style="background: hsl(var(--background)); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid hsl(var(--border));">
+                    <h5><span class="highlight-term">Traduction</span></h5>
+                    <div class="image-box" style="height: 180px;">
+                        <img src="https://cdn8.futura-sciences.com/a1280/images/glossaire/ribosome-traduction-proteine_guillaume-bokiau-wiki-gfdl_01.jpg" alt="Traduction">
+                    </div>
+                    <p style="font-size: 0.95rem;">Utilise l’ARNm et les ARN de transfert (ARNt) pour assembler les acides aminés en protéines fonctionnelles.</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 2rem;">Les transformations sont possibles grâce à des mécanismes précis, comme la complémentarité des bases, l'anti parallélisme des brins d’ADN, et les enzymes spécialisées (ex: <span class="highlight-term">hélicase, ligase, ADN polymérase, primase</span>, etc.)</p>
+
+            <div class="card" style="margin-top: 1.5rem; background: hsl(var(--secondary)/0.2); width: 100%;">
+                <p><strong>Exemple du processus :</strong> Lors de la réplication, l’hélicase sépare les brins d’ADN, la primase place une amorce d’ARN, et l’ADN polymérase ajoute des nucléotides. Ensuite, la ligase apporte les fragments d’Okazaki pour compléter le brin discontinu. La transcription copie l’information génétique d’un gène en ARNm, puis le brin d’ARNm mature est utilisé par les ribosomes pour produire une protéine en liant les acides aminés qui sont attachés aux ARNt.</p>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 3rem;">
+            <div class="card scientist-card">
+                <h4 style="margin-bottom: 0;">Scientifique Ontarienne : Dr. Brenda Andrews</h4>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ73AaAMFbLdcbgiGN6OVQNLqN95l-aQRjpA&s" alt="Logo UofT" class="uottawa-logo">
+                <img src="https://thedonnellycentre.utoronto.ca/sites/default/files/styles/square_1_1_600/public/assets/faculty/image/HPOT2731_0.jpg?itok=MD7aL2_9" alt="Portrait Dr Andrews" class="scientist-photo">
+                <p style="margin-top: 1rem;">Dr Brenda Andrews est une scientifique canadienne reconnue mondialement pour ses travaux en génétique moléculaire. Basée à l’Université de Toronto en Ontario, elle est pionnière dans l'étude des réseaux génétiques, la régulation transcriptionnelle, et les interactions génétiques contrôlant le fonctionnement cellulaire.</p>
+                <div class="grid grid-2" style="width: 100%; margin-top: 1.5rem;">
+                    <div class="inner-box">
+                        <h5 style="margin-top:0;"><span class="highlight-term">Son travail se concentre principalement sur :</span></h5>
+                        <ul style="margin-top: 1.5rem;">
+                            <li>Cartographier les réseaux génétiques complets pour comprendre comment les gènes peuvent interagir et réguler le cycle cellulaire et la division cellulaire.</li>
+                            <li>Étudier la régulation des gènes impliqués dans la croissance, la survie, et la réponse au stress.</li>
+                            <li>Analyser comment les mutations et perturbations génétiques conduisent à des maladies, comme certains cancer et troubles génétiques.</li>
+                            <li>Développer des approches systémiques pour comprendre la complexité du génome et les interactions entre les gènes.</li>
+                            <li>Former la prochaine génération de chercheurs en génétique moléculaire.</li>
+                        </ul>
+                    </div>
+                    <div class="inner-box">
+                        <h5 style="margin-top:0;"><span class="highlight-term">Distinctions :</span></h5>
+                        <ul style="font-size: 1.25rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-evenly; margin-top: 1rem;">
+                            <li>Henry G. Friesen International Prize in Health Research 2025</li>
+                            <li>Research Fellow with Dr. Ira Herskowitz (UCSF, 1991)</li>
+                            <li>PhD in Medical Biophysics (UofT, 1986)</li>
+                            <li>BSc in Zoology (UofT, 1980)</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; border-left: 3px solid hsl(var(--primary)); padding-left: 1rem;">Dr Andrews a dirigé le <strong>“Donnelly Centre for Cellular and Biomolecular Research”</strong> à Toronto, qui est un centre international qui a contribué à placer le Canada au premier plan mondial en génétique moléculaire.</p>
+                
+                <div class="image-box no-stretch" style="margin-top: 2rem; height: 600px; width: 100%; border: none;">
+                    <img src="https://thedonnellycentre.utoronto.ca/sites/default/files/styles/scale_width_1750/public/Brenda%20COCsmall._0.jpg?itok=O7MVOS_z" alt="Banner Research">
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="width: 100%; margin-bottom: 3rem;">
+            <h4 style="text-align: center; width: 100%;">Carte Conceptuelle Interactive</h4>
+            <div class="media-container" style="padding-bottom: 50%;">
+                <iframe src="https://mymap.ai/share/mind-map-for-gntique-molculaire-buAjfplEIzwmp"></iframe>
+            </div>
+            <a href="https://mymap.ai/share/mind-map-for-gntique-molculaire-buAjfplEIzwmp" target="_blank" class="btn btn-primary" style="width: 100%;">Voir en plein écran</a>
+        </div>
+
+        <div class="card" style="margin-bottom: 3rem;">
+            <div class="image-box no-stretch" style="height: 350px;">
+                <img src="https://www.yourfreecareertest.com/wp-content/uploads/2019/12/What-does-a-Geneticist-do.jpg" alt="Banner Career">
+            </div>
+
+            <h4 style="margin-top: 1.5rem;">Recherche de Carrières : Généticien 🧬</h4>
+            <p>Un généticien est un scientifique qui étudie et analyse les caractères héritaires des êtres vivants, incluant les micro-organismes, les plantes, les animals, et les êtres humains. Ils travaillent sur le génome et jouent un rôle crucial dans la lutte contre les maladies héritaires graves.</p>
+            
+            <div class="grid grid-2" style="width: 100%; align-items: stretch;">
+                <div class="inner-box">
+                    <h5 style="margin-top:0;"><span class="highlight-term">Responsabilités principales :</span></h5>
+                    <ul style="margin-top: 0.75rem; margin-bottom: 1.5rem;">
+                        <li>Étudier la structure et le fonctionnement des gènes et des chromosomes.</li>
+                        <li>Faire des expérimentations pour identifier les similarités et les différences génétiques entre les espèces.</li>
+                        <li>Modifier ou analyser certains gènes afin d’améliorer des organismes.</li>
+                        <li>Étudier les mutations génétiques et leur lien avec les maladies héritaires.</li>
+                        <li>Participer à la médecine, biotechnologie et identification criminelle.</li>
+                    </ul>
+                    <h5 style="border-top: 1px solid hsl(var(--border)); padding-top: 1rem;"><span class="highlight-term">Compétences requises :</span></h5>
+                    <ul style="margin-top: 0.75rem;">
+                        <li>Connaissances approfondies en biologie cellulaire et génétique moléculaire.</li>
+                        <li>Capacité d’analyse et d’interprétation de données génétiques complexes.</li>
+                        <li>Esprit critique et réussite scientifique.</li>
+                        <li>Compétences en communication pour présenter et expliquer les résultats de recherche.</li>
+                    </ul>
+                </div>
+
+                <div class="inner-box" style="display: flex; flex-direction: column;">
+                    <h5 style="margin-top:0;"><span class="highlight-term">Exigences :</span></h5>
+                    <ul style="margin-top: 0.75rem; margin-bottom: 2rem;">
+                        <li>Baccalauréat en biologie ou discipline connexe.</li>
+                        <li>Maîtrise/doctorat en biologie ou discipline connexe.</li>
+                        <li>Expérience en recherche postdoctorale habituellement exigée.</li>
+                    </ul>
+                    
+                    <div style="background: hsl(var(--secondary)/0.3); border: 1px solid hsl(var(--primary)/0.3); border-radius: 0.5rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding: 2.5rem;">
+                        <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Salaire Moyen (Ontario)</p>
+                        <p class="gradient-text" style="font-size: 2.5rem; font-weight: 800; line-height: 1;">40,00 $ / heure</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed hsl(var(--primary)/0.2);">
+                            <p style="font-size: 0.85rem; color: hsl(var(--foreground)/0.7);">Bas : 24,50 $ | Haut : 69,23 $</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="gradient-text section-header">Ressources Vidéo 📹</h3>
+        <div class="grid grid-2">
+            <div class="card">
+                <h4 style="text-align: center;">Vidéo 1</h4>
+                <div class="media-container">
+                    <iframe src="https://www.youtube.com/embed/Sy9G3x7eyA4" allowfullscreen></iframe>
+                </div>
+                <p style="font-size: 0.8rem;">URL: https://www.youtube.com/watch?v=Sy9G3x7eyA4</p>
+            </div>
+            <div class="card">
+                <h4 style="text-align: center;">Vidéo 2</h4>
+                <div class="media-container">
+                    <iframe src="https://www.youtube.com/embed/bKIpDtJdK8Q" allowfullscreen></iframe>
+                </div>
+                <p style="font-size: 0.8rem;">URL: https://www.youtube.com/watch?v=bKIpDtJdK8Q</p>
+            </div>
+        </div>
+
+        <div class="grid grid-2">
+            <div class="card">
+                <h4>Historique</h4>
+                <div class="image-box" style="height: 250px;">
+                    <img src="https://i.ytimg.com/vi/92HWRdvDF_s/maxresdefault.jpg" alt="Historique">
+                </div>
+                <div class="timeline-item">
+                    <span>1800s:</span>
+                    <ul>
+                        <li>Découverte des bases azotées et des acides nucléiques.</li>
+                        <li>Gregor Mendel établit les lois de l’hérédité en étudiant les pois.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <span>1900s:</span>
+                    <ul>
+                        <li>Frederick Griffith découvre le phénomène de transformation bactérienne.</li>
+                        <li>Alfred Hershey et Martha Chase ont prouvé que l’ADN contient l’information génétique avec des bactériophages.</li>
+                        <li>James Watson et Francis Crick découvrent la structure en double hélice de l’ADN.</li>
+                        <li>Meselson et Stahl confirment la réplication semi-conservative de l’ADN.</li>
+                        <li>Découverte du code génétique et des codons par Nirenberg et Khorana.</li>
+                        <li>Identification des mutations et de leurs effets sur la traduction des protéines.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <span>2000s:</span>
+                    <ul>
+                        <li>Découverte de nouveaux mécanismes de régulation des gènes.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Informations Pertinentes 🔬</h4>
+                <div class="image-box" style="height: 250px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Point_mutations-en.png" alt="Informations">
+                </div>
+                <ul class="info-bullets">
+                    <li>
+                        <div class="info-bullet-content">
+                            <span class="bullet-title">Compensations Génétiques</span>
+                            Certaines mutations génétiques n’ont aucun effet visible, car d’autres gènes peuvent compenser la perte de fonction.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="info-bullet-content">
+                            <span class="bullet-title">Redondance du Code</span>
+                            Plusieurs codons différents peuvent coder pour le même acide aminé, ce qui protège parfois la cellule contre les erreurs de réplication.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="info-bullet-content">
+                            <span class="bullet-title">Mécanismes de Réparation</span>
+                            La majorité des erreurs qui apparaissent lors de la réplication de l’ADN sont corrigées automatiquement par des mécanismes de réparation.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="info-bullet-content">
+                            <span class="bullet-title">ARN Régulateurs</span>
+                            Tous les gènes ne servent pas à fabriquer des protéines, car certains produisent des ARN régulateurs qui contrôlent quand et comment d’autres gènes sont activés.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h3 class="gradient-text">Analyse d'Articles</h3>
+        </div>
+        <div class="grid grid-2">
+            <div class="card">
+                <h4>1. Dr Brenda Andrews : Prix Friesen 2025</h4>
+                <div class="image-box" style="height: 300px;">
+                    <img src="https://thedonnellycentre.utoronto.ca/sites/default/files/styles/scale_width_1000/public/assets/news/image/Brenda%20Andrews.webp?itok=qNNHH90y" alt="Article 1">
+                </div>
+                <p>Cet article présente une avancée importante dans la compréhension des interactions génétiques dans les cellules. L’équipe de Dr Brenda Andrews a utilisé des techniques automatisées pour cartographier comment les gènes interagissent et s’influencent mutuellement dans les cellules de levure et de mammifères. Ils ont découvert que certaines interactions génétiques peuvent compenser les effets de mutations qui perturbent le cycle cellulaire ou la croissance.</p>
+                <p>Cette approche montre que les gènes ne fonctionnent jamais séparément, mais sont intégrés dans des systèmes qui soutiennent la stabilité et la survie de la cellule. Ces résultats ont des implications pour comprendre les maladies, incluant le cancer, car ils permettent de prédire l’effet de combinaisons de mutation.</p>
+                <span class="article-conclusion-inline">En conclusion, je trouve cet article intéressant, car il montre que comprendre les gènes est important pour aussi comprendre les maladies.</span>
+            </div>
+            <div class="card">
+                <h4>2. Les clés pour ouvrir le génome</h4>
+                <div class="image-box" style="height: 300px;">
+                    <img src="https://nouvelles.umontreal.ca/public/nouvelles/_processed_/6/3/csm_20240409_clefs-genome-couverture_a830246ff7.jpg" alt="Article 2">
+                </div>
+                <p>Cet article explique une découverte importante sur les facteurs de transcription pionniers et leur rôle dans l’ouverture du génome. L’équipe de Dr Jacques Drouin à l’institut de recherches cliniques de Montréal a montré comment ces facteurs peuvent modifier la structure de la chromatine pour rendre certaines régions de l’ADN accessibles à l’expression génique.</p>
+                <p>De plus, l’étude souligne aussi l’importance de l’épigénome qui contrôle quels gènes sont activés ou désactivés sans changer la séquence de l’ADN. Une mauvaise régulation de ce mécanisme peut contribuer à certaines maladies.</p>
+                <span class="article-conclusion-inline">En conclusion, je trouve cet article intéressant, car cette découverte montre que l’ouverture est essentielle pour un bon fonctionnement des cellules. Ceci montre aussi que les facteurs de transcription pionniers sont importants dans le développement cellulaire en contrôlant l’expression génique, qui est nécessaire pour la vie.</span>
+            </div>
+        </div>
+
+        <footer class="section-header" style="margin-top: 4rem; padding-bottom: 4rem;">
+            <h3 class="gradient-text">Bibliographie de l'Unité 3</h3>
+            <ul class="bibliography-list">
+                <li>Dr. Brenda Andrews awarded the 2025 Henry G. Friesen International Prize in Health Research. (n.d.). Donnelly Centre. https://thedonnellycentre.utoronto.ca/news/dr-brenda-andrews-awarded-2025-henry-g-friesen-international-prize-health-research</li>
+                <li>Généticien / Généticienne. (n.d.). Onisep. https://www.onisep.fr/ressources/univers-metier/metiers/geneticien-geneticienne</li>
+                <li>Le code génétique (leçon). (n.d.). Khan Academy. https://fr.khanacademy.org/science/biologie-a-l-ecole/x5047ff3843d876a6:bio-6e-annee-sciences-de-base/x5047ff3843d876a6:bio-6-1h-adn-arn-et-expression-d-un-gene/a/the-genetic-code</li>
+                <li>Les clés pour ouvrir le génome - UdeMnouvelles. (2024, April 10). UdeMNouvelles. https://nouvelles.umontreal.ca/article/2024/04/10/les-cles-pour-ouvrir-le-genome</li>
+                <li>Régulation de l'expression des gènes | Focus Biologie synthétique. (n.d.). SCNAT savoir. https://sciencesnaturelles.ch/synthetic-biology-explained/character_is_synthetic_biology_/elements/gene_regulation</li>
+                <li>16.1 Régulation de l'expression génique – Introduction à la biologie cellulaire et moléculaire. (n.d.). eCampusOntario Pressbooks. https://ecampusontario.pressbooks.pub/biocell/chapter/16-1-regulation-de-lexpression-genique/</li>
+                <li>Canada. (2025). Généticien/généticienne au Canada | Salaires - Guichet-Emplois. Guichetemplois.gc.ca. https://www.guichetemplois.gc.ca/rapportmarche/salaire-profession/2645/ca</li>
+                <li>Brenda Andrews. (2020). Utoronto.ca. https://thedonnellycentre.utoronto.ca/faculty/brenda-andrews</li>
+                <li>Alloprof aide aux devoirs | Alloprof. (n.d.). Www.alloprof.qc.ca. https://www.alloprof.qc.ca/fr/eleves/bv/sciences/la-synthese-des-proteines-s1228</li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>
