@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unité 4 : Homéostasie - Portfolio SBI4U</title>
+    <meta name="description" content="Contenu détaillé de l'Unité 4 sur l'Homéostasie pour le portfolio de biologie SBI4U.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --background: 220 15% 10%;
+            --foreground: 180 10% 95%;
+            --card: 220 15% 12%;
+            --primary: 160 80% 45%; 
+            --primary-foreground: 220 15% 10%;
+            --secondary: 180 25% 20%;
+            --accent: 140 70% 50%;
+            --border: 220 15% 20%;
+            --gradient-primary: linear-gradient(135deg, hsl(160 80% 45%), hsl(140 70% 50%));
+            --shadow-glow: 0 0 15px hsl(160 80% 45% / 0.3);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+            padding-top: 5rem;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Navigation */
+        nav { position: fixed; top:0; left:0; right:0; z-index:1000; background-color:hsl(var(--background)/0.95); backdrop-filter:blur(12px); box-shadow:0 4px 20px hsl(220 15% 5% / 0.3);}
+        .nav-content { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.5rem; }
+        .logo { font-size:1.5rem; font-weight:700; cursor:pointer; }
+        
+        .btn { display: inline-block; padding: 0.75rem 1.5rem; font-size: 1rem; font-weight: 600; text-decoration: none; border-radius: 0.5rem; transition: all 0.3s; cursor: pointer; border: none; text-align: center; }
+        .btn-primary { background: var(--gradient-primary); color: hsl(var(--primary-foreground)); }
+        .btn-primary:hover { box-shadow: var(--shadow-glow); transform: translateY(-1px); }
+        .btn-outline { background: transparent; border: 1px solid hsl(var(--primary)/0.3); color: hsl(var(--foreground)); }
+        .btn-outline:hover { background: hsl(var(--primary)/0.1); border-color: hsl(var(--primary)/0.5); }
+
+        .section-header { text-align: center; margin-bottom: 3rem; padding-top: 2rem;}
+        .section-header h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 0.5rem; }
+        .section-header p { font-size: 1.125rem; color: hsl(var(--foreground)); max-width: 42rem; margin: 0 auto; }
+        
+        .grid { display: grid; gap: 2rem; margin-bottom: 3rem; }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); } 
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        
+        .card { 
+            background: hsl(var(--card)); 
+            border: 1px solid hsl(var(--border)); 
+            border-radius: 1rem; padding: 2rem; 
+            transition: all 0.3s; display: flex; 
+            flex-direction: column; align-items: flex-start; text-align: left;
+            height: 100%;
+        }
+        .card:hover { border-color: hsl(var(--primary)/0.5); box-shadow: var(--shadow-glow); transform: translateY(-2px); }
+        
+        .card h4 { font-size: 1.4rem; font-weight: 600; margin-bottom: 0.75rem; color: hsl(var(--accent)); }
+        .card h5 { font-size: 1.1rem; font-weight: 600; margin-top: 1rem; color: hsl(var(--primary)); }
+        .card p { color: hsl(var(--foreground)); margin-bottom: 1rem; } 
+        
+        .card ul { width: 100%; }
+        
+        .card li { position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem; font-size: 0.95rem; list-style: none;}
+        .card li::before { content: '•'; color: hsl(var(--primary)); font-weight: 600; position: absolute; left: 0; }
+
+        .info-bullets { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            width: 100%; 
+        }
+        
+        .info-bullets li { 
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            border-left: 4px solid hsl(var(--primary)); 
+            padding-left: 2.5rem !important; 
+            margin-bottom: 4rem; 
+            position: relative;
+            min-height: 100px; 
+        }
+
+        .info-bullets li::before { 
+            content: '•' !important;
+            color: hsl(var(--primary)); 
+            font-size: 2.5rem;
+            line-height: 1;
+            position: absolute;
+            left: 0.6rem;
+            top: 50%; 
+            transform: translateY(-50%); 
+        }
+
+        .info-bullet-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .info-bullets .bullet-title { 
+            color: hsl(var(--primary)); 
+            font-weight: 800; 
+            font-size: 1.2rem; 
+            display: block; 
+            margin-bottom: 0.3rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            line-height: 1.2;
+        }
+
+        .info-bullets li:last-child { margin-bottom: 1rem; }
+
+        .media-container {
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid hsl(var(--border));
+        }
+        .media-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        
+        .image-box {
+            width: 100%; height: 400px; background-color: #000; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid hsl(var(--border)); overflow: hidden; position: relative; 
+        }
+        .image-box img { width: 100%; height: 100%; object-fit: fill; display: block; }
+        .no-stretch img { object-fit: cover !important; }
+
+        .scientist-card { position: relative; }
+        .scientist-photo { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; background-color: #000; border: 3px solid hsl(var(--primary)); margin: 2rem auto 1rem 0; display: block; }
+        .uottawa-logo { position: absolute; top: 92px; right: 2.5rem; max-width: 250px; height: auto; opacity: 1; }
+
+        .timeline-item { border-left: 3px solid hsl(var(--primary)); padding-left: 1rem; margin-bottom: 1.5rem; }
+        .timeline-item span { color: hsl(var(--primary)); display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 1.1rem; }
+
+        .highlight-term { color: hsl(var(--primary)); font-weight: 600; }
+        .article-conclusion-inline { display: block; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px dashed hsl(var(--border)); font-style: italic; }
+
+        .bibliography-list { list-style: none; padding-left: 0; margin-top: 2rem; font-size: 0.9rem; }
+        .bibliography-list li { margin-bottom: 0.75rem; border-bottom: 1px dotted hsl(var(--border)); padding-bottom: 0.75rem; position: relative; padding-left: 1.5rem; word-wrap: break-word; }
+        .bibliography-list li::before { content: '➤'; color: hsl(var(--primary)); position: absolute; left: 0; }
+
+        .inner-box { background: hsl(var(--background)); border: 1px solid hsl(var(--border)); border-radius: 0.75rem; padding: 2rem; width: 100%; height: 100%; display: flex; flex-direction: column; }
+
+        @media (max-width: 1024px) {
+            .grid-3 { grid-template-columns: 1fr; }
+            .uottawa-logo { top: 0.5rem; right: 0.5rem; max-width: 120px; }
+            .scientist-photo { margin: 1rem auto; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-content">
+            <div class="logo gradient-text">Unité 4 : Homéostasie</div>
+            <a href="index.html" class="btn btn-outline">Retour au Portfolio</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="section-header">
+            <h2 class="gradient-text">Unité 4 : Homéostasie</h2>
+            <p>L’homéostasie est la capacité d’un organisme à maintenir un équilibre interne stable malgré les variations de l’environnement externe.</p>
+            
+            <div class="image-box" style="max-width: 800px; margin: 2rem auto 0 auto; height: 400px;">
+                <img src="https://static1.squarespace.com/static/64aa25ba0f9b2a46585e0148/64aa2c44baba8477b2a1e6ef/681f7cbc623510610e5b6ee9/1746966666270/ChatGPT+Image+May+10%2C+2025%2C+07_27_08+AM.png?format=1500w" alt="Homéostasie">
+            </div>
+        </header>
+
+        <div class="card" style="margin-bottom: 3rem; width: 100%;">
+            <h4 style="font-size: 1.8rem; text-align: center; width: 100%;" class="gradient-text">Introduction</h4>
+            <p style="font-size: 1.1rem; margin-top: 1rem; margin-bottom: 2rem;">
+                L’homéostasie est la capacité d’un organisme à maintenir un équilibre interne stable malgré les variations de l’environnement externe. Ces mécanismes permettent à un organisme de survivre, de fonctionner correctement et de maintenir ses fonctions vitales.
+            </p>
+
+            <div class="grid grid-2" style="margin-bottom: 2rem; width: 100%;">
+                <div class="image-box">
+                    <img src="https://www.visiblebody.com/hubfs/learn/assets/fr/nervous/SNC-et-SNP.jpg" alt="Schéma Homéostasie 1">
+                </div>
+                <div class="image-box">
+                    <img src="https://eliserouvrais.com/wp-content/uploads/2023/08/Systeme-endocrinien-et-glandes-endocrines.png" alt="Schéma Homéostasie 2">
+                </div>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="intro-box" style="background: hsl(var(--background)); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid hsl(var(--border));">
+                    <h5><span class="highlight-term">Exemples de systèmes impliqués</span></h5>
+                    <ul style="font-size: 0.95rem; margin-top: 1rem;">
+                        <li>Le système nerveux, qui transmet des signaux rapides pour ajuster le fonctionnement des organes.</li>
+                        <li>Le système endocrinien, qui utilise des hormones pour réguler les fonctions à long terme.</li>
+                    </ul>
+                </div>
+                <div class="intro-box" style="background: hsl(var(--background)); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid hsl(var(--border));">
+                    <h5><span class="highlight-term">Paramètres régulés</span></h5>
+                    <ul style="font-size: 0.95rem; margin-top: 1rem;">
+                        <li>La température corporelle</li>
+                        <li>La glycémie (taux de glucose dans le sang)</li>
+                        <li>La pression artérielle</li>
+                        <li>Le pH sanguin</li>
+                        <li>L’équilibre hydrique</li>
+                    </ul>
+                </div>
+                <div class="intro-box" style="background: hsl(var(--background)); padding: 1.5rem; border-radius: 0.75rem; border: 1px solid hsl(var(--border));">
+                    <h5><span class="highlight-term">Mécanismes</span></h5>
+                    <p style="font-size: 0.95rem; margin-top: 1rem;">Les mécanismes de régulation fonctionnent par des boucles de rétroaction négative.</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 1.5rem; background: hsl(var(--secondary)/0.2); width: 100%;">
+                <p><strong>Exemple du processus :</strong> Par exemple, lorsque la température corporelle augmente, les récepteurs de la peau et du cerveau détectent ce changement. Le centre de contrôle (l’hypothalamus) active les glandes sudoripares pour produire de la sueur afin d’évacuer la chaleur. Lorsque la glycémie augmente après un repas, le pancréas libère de l’insuline pour permettre aux cellules d’absorber le glucose.</p>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 3rem;">
+            <div class="card scientist-card">
+                <h4 style="margin-bottom: 0;">Scientifique Ontarien : Dr Daniel Drucker</h4>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ73AaAMFbLdcbgiGN6OVQNLqN95l-aQRjpA&s" alt="Logo UofT" class="uottawa-logo">
+                <img src="https://images.squarespace-cdn.com/content/v1/66aab19250011f1736af7de4/2977b46c-077b-4160-857a-a17552a3bbf0/Drucker+-+SHF+Portrait.jpg" alt="Portrait Dr Drucker" class="scientist-photo">
+                <p style="margin-top: 1rem;">Dr Daniel Drucker est un scientifique canadien reconnu mondialement pour ses travaux sur l’homéostasie énergétique et la régulation hormonale. Basé à l’Université de Toronto en Ontario, il est un pionnier dans l’étude des hormones intestinales et du métabolisme.</p>
+                <div class="grid grid-2" style="width: 100%; margin-top: 1.5rem;">
+                    <div class="inner-box">
+                        <h5 style="margin-top:0;"><span class="highlight-term">Son travail se concentre principalement sur :</span></h5>
+                        <ul style="margin-top: 1.5rem;">
+                            <li>Étude de la régulation de la glycémie par les hormones comme l’insuline et le glucagon afin de comprendre comment le corps maintient un taux de sucre stable dans le sang</li>
+                            <li>Analyse du rôle des incrétines, des hormones intestinales qui stimulent la production d’insuline après les repas et participent à l’équilibre énergétique</li>
+                            <li>Recherche sur les mécanismes hormonaux du diabète, incluant la résistance à l’insuline et les troubles du fonctionnement du pancréas</li>
+                            <li>Étude du contrôle de l’appétit et du poids corporel à travers les hormones de la faim et de la satiété</li>
+                            <li>Développement de nouvelles approches thérapeutiques pour améliorer le traitement du diabète et des maladies métaboliques</li>
+                        </ul>
+                    </div>
+                    <div class="inner-box">
+                        <h5 style="margin-top:0;"><span class="highlight-term">Distinctions :</span></h5>
+                        <ul style="font-size: 1.25rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-evenly; margin-top: 1rem;">
+                            <li>Canada Gairdner International Award</li>
+                            <li>Officier de l’Ordre du Canada</li>
+                            <li>Chercheur principal au Banting and Best Diabetes Centre</li>
+                            <li>Professeur de médecine à l’Université de Toronto</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; border-left: 3px solid hsl(var(--primary)); padding-left: 1rem;">Dr Drucker est directeur du <strong>Banting and Best Diabetes Centre</strong> à Toronto, un centre international reconnu pour ses recherches sur la régulation de la glycémie et l’homéostasie métabolique.</p>
+                
+                <div class="image-box no-stretch" style="height: 350px; width: 100%; margin-top: 1.5rem; margin-bottom: 0;">
+                    <img src="https://www.sinaihealth.ca/sites/default/files/styles/max_2600x2600/public/2024-03/Dr.%20Daniel%20Drucker.png?itok=oTb9usuT" alt="Banner Daniel Drucker">
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="width: 100%; margin-bottom: 3rem;">
+            <h4 style="text-align: center; width: 100%;">Carte Conceptuelle</h4>
+            <div class="media-container" style="padding-bottom: 50%;">
+                <iframe src="https://mymap.ai/share/homostasie-bGdJzibiahnik"></iframe>
+            </div>
+            <a href="https://mymap.ai/share/homostasie-bGdJzibiahnik" target="_blank" class="btn btn-primary" style="width: 100%;">Voir en plein écran</a>
+        </div>
+
+        <div class="card" style="margin-bottom: 3rem;">
+            <div class="image-box no-stretch" style="height: 350px;">
+                <img src="https://www.auckland.ac.nz/content/auckland/en/study/study-options/find-a-study-option/master-of-clinical-exercise-physiology/_jcr_content/header/image.img.768.medium.jpg/1750964313716.jpg" alt="Banner Career Physiologiste">
+            </div>
+
+            <h4 style="margin-top: 1.5rem;">Recherche de Carrières : Physiologiste</h4>
+            <p>Un physiologiste est un scientifique qui étudie le fonctionnement du corps humain et les mécanismes de régulation de l’homéostasie. Il analyse comment les systèmes nerveux, endocrinien, cardiovasculaire et respiratoire travaillent ensemble pour maintenir l’équilibre interne. Les physiologistes jouent un rôle crucial dans la compréhension des maladies liées aux dérèglements de l’homéostasie, comme le diabète, l’hypertension et les troubles hormonaux.</p>
+            
+            <div class="grid grid-2" style="width: 100%; align-items: stretch;">
+                <div class="inner-box">
+                    <h5 style="margin-top:0;"><span class="highlight-term">Responsabilités principales :</span></h5>
+                    <ul style="margin-top: 0.75rem; margin-bottom: 1.5rem;">
+                        <li>Étudier le fonctionnement des systèmes de régulation du corps afin de comprendre comment l’organisme maintient son équilibre interne</li>
+                        <li>Analyser la régulation de la température corporelle, de la glycémie et du pH sanguin pour identifier les mécanismes de l’homéostasie</li>
+                        <li>Effectuer des recherches sur les maladies métaboliques comme le diabète et les troubles hormonaux</li>
+                        <li>Développer des traitements permettant de rétablir l’équilibre physiologique chez les patients</li>
+                    </ul>
+                    <h5 style="border-top: 1px solid hsl(var(--border)); padding-top: 1rem;"><span class="highlight-term">Compétences requises :</span></h5>
+                    <ul style="margin-top: 0.75rem;">
+                        <li>Posséder des connaissances approfondies en physiologie humaine et en endocrinologie</li>
+                        <li>Être capable d’analyser des données scientifiques complexes avec rigueur</li>
+                        <li>Faire preuve d’esprit critique pour interpréter les résultats de recherche</li>
+                        <li>Communiquer clairement les découvertes scientifiques à des équipes médicales et au public</li>
+                    </ul>
+                </div>
+
+                <div class="inner-box" style="display: flex; flex-direction: column;">
+                    <h5 style="margin-top:0;"><span class="highlight-term">Exigences :</span></h5>
+                    <ul style="margin-top: 0.75rem; margin-bottom: 2rem;">
+                        <li>Un baccalauréat en biologie/discipline connexe.</li>
+                        <li>Une maîtrise/doctorat en biologie/discipline connexe.</li>
+                        <li>Expérience en recherche postdoctorale habituellement exigée.</li>
+                    </ul>
+                    
+                    <div style="background: hsl(var(--secondary)/0.3); border: 1px solid hsl(var(--primary)/0.3); border-radius: 0.5rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding: 2.5rem;">
+                        <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">Salaire Moyen (Ontario)</p>
+                        <p class="gradient-text" style="font-size: 2.5rem; font-weight: 800; line-height: 1;">40,00 $ / heure</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed hsl(var(--primary)/0.2);">
+                            <p style="font-size: 0.85rem; color: hsl(var(--foreground)/0.7);">Bas : 24,50 $ | Haut : 69,23 $</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="gradient-text section-header">Ressources Vidéo 📹</h3>
+        <div class="grid grid-2">
+            <div class="card">
+                <h4 style="text-align: center;">Vidéo 1</h4>
+                <div class="media-container">
+                    <iframe src="https://www.youtube.com/embed/WgfPvsUSilM" allowfullscreen></iframe>
+                </div>
+                <p style="font-size: 0.8rem;">URL: https://www.youtube.com/watch?v=WgfPvsUSilM</p>
+            </div>
+            <div class="card">
+                <h4 style="text-align: center;">Vidéo 2</h4>
+                <div class="media-container">
+                    <iframe src="https://www.youtube.com/embed/d4M739nAplk" allowfullscreen></iframe>
+                </div>
+                <p style="font-size: 0.8rem;">URL: https://www.youtube.com/watch?v=d4M739nAplk</p>
+            </div>
+        </div>
+
+        <div class="grid grid-2">
+            <div class="card">
+                <h4>Historique</h4>
+                <div class="image-box" style="height: 250px;">
+                    <img src="https://www.frontiersin.org/files/Articles/509069/fphys-11-00200-HTML/image_m/fphys-11-00200-g003.jpg" alt="Historique">
+                </div>
+        <br>
+                <div class="timeline-item">
+                    <span>1800s:</span>
+                    <ul>
+                        <li>Claude Bernard introduit le concept de "milieu intérieur."</li>
+                        <li>Premières observations sur la régulation interne du corps humain.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <span>1900s:</span>
+                    <ul>
+                        <li>Walter Cannon définit officiellement le concept d’homéostasie.</li>
+                        <li>Découverte du rôle des hormones dans la régulation physiologique.</li>
+                        <li>Identification du rôle du pancréas dans la régulation de la glycémie.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <span>2000s:</span>
+                    <ul>
+                        <li>Découverte des mécanismes cérébraux de régulation de l’appétit.</li>
+                        <li>Développement des technologies de surveillance de la glycémie.</li>
+                        <li>Avancées dans la compréhension des maladies métaboliques.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Informations Pertinentes 🔬</h4>
+                <div class="image-box" style="height: 250px;">
+                    <img src="https://i0.wp.com/blog.creasources.ca/wp-content/uploads/2020/12/Fiche-equilibre-Anxiete_stress.png?resize=460%2C385&ssl=1" alt="Informations Stress et Équilibre">
+                </div>
+                <ul class="info-bullets">
+                    <li>
+                        <div class="info-bullet-content">
+                            <span class="bullet-title">pH Sanguin</span>
+                            Une variation de seulement 0,5 unité de pH sanguin peut être fatale, soulignant à quel point le corps doit maintenir cet équilibre avec précision pour survivre.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="info-bullet-content">
+                            <span class="bullet-title">Énergie Cérébrale</span>
+                            Le cerveau consomme une quantité importante d’énergie pour soutenir l’homéostasie, coordonner les fonctions corporelles et réguler les processus physiologiques essentiels.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="info-bullet-content">
+                            <span class="bullet-title">Pression Artérielle</span>
+                            Le corps ajuste la pression artérielle plusieurs fois par minute afin d’assurer une circulation sanguine adéquate et un apport constant en oxygène et nutriments aux organes.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="info-bullet-content">
+                            <span class="bullet-title">Sommeil et Stress</span>
+                            L’homéostasie continue de fonctionner pendant le sommeil, mais le stress chronique peut perturber les mécanismes hormonaux et affecter l’équilibre interne, ce qui montre l’importance de la régulation physiologique dans la santé globale.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h3 class="gradient-text">Analyse d'Articles</h3>
+        </div>
+        <div class="grid grid-2">
+            <div class="card">
+                <h4>1. Homéostasie de la Réponse IgA</h4>
+                <div class="image-box" style="height: 300px;">
+                    <img src="https://onlinelibrary.wiley.com/cms/asset/630feb8c-9495-434e-b7e3-68cc8ef8404a/mco2776-gra-0001-m.jpg?trick=1767561050137" alt="Schéma Article IgA">
+                </div>
+                <p>Source: <a href="https://www.medecinesciences.org/en/articles/medsci/full_html/2021/01/msc200256/msc200256.html " target="_blank" style="color: hsl(var(--primary));">medecinesciences.org</a><br><br>Cet article présente une découverte importante concernant la régulation de l’homéostasie intestinale. Les scientifiques ont étudié le rôle des immunoglobulines A (IgA), qui sont des anticorps présents dans l’intestin et qui interagissent avec le microbiote. Ils ont montré que ces anticorps permettent de maintenir un équilibre entre les bactéries bénéfiques et le système immunitaire afin d’éviter une inflammation excessive.</p>
+                <p>Les chercheurs expliquent que lorsque cette régulation est perturbée, l’organisme peut développer des maladies inflammatoires intestinales, car le système immunitaire réagit de façon excessive contre les bactéries normalement inoffensives. Les IgA permettent donc de maintenir un environnement intestinal stable.</p>
+                <span class="article-conclusion-inline">En conclusion, je trouve cet article intéressant, car il montre que l’homéostasie ne concerne pas seulement la température ou la glycémie, mais aussi l’équilibre complexe entre le système immunitaire et les bactéries du corps.</span>
+            </div>
+            <div class="card">
+                <h4>2. Homéostasie du fer</h4>
+                <div class="image-box" style="height: 300px;">
+                    <img src="https://www.researchgate.net/publication/294276251/figure/fig1/AS:337514826092558@1457481213839/Homeostasie-du-fer-dans-des-conditions-normales.png" alt="Schéma Homéostasie du Fer">
+                </div>
+                <p>Source: <a href="https://ipubli.inserm.fr/bitstream/handle/10608/9137/MS_2017_03_260.html" target="_blank" style="color: hsl(var(--primary));">ipubli.inserm.fr</a><br><br>Cet article explique le fonctionnement de l’homéostasie du fer dans l’organisme. Le fer est un élément essentiel pour le transport de l’oxygène dans le sang, la production d’énergie et le fonctionnement de nombreux enzymes. Cependant, un excès ou un manque de fer peut être dangereux pour les cellules.</p>
+                <p>Les scientifiques décrivent les mécanismes qui contrôlent l’absorption, le stockage et le recyclage du fer dans le corps. Ils montrent que l’hormone hepcidine joue un rôle central en régulant la quantité de fer qui entre dans la circulation sanguine. Lorsque l’équilibre est perturbé, cela peut entraîner des maladies comme l’anémie ou l’hémochromatose.</p>
+                <span class="article-conclusion-inline">En conclusion, je trouve cet article intéressant, car il démontre que l’homéostasie repose sur des mécanismes très précis qui permettent de garder un équilibre vital entre les besoins de l’organisme et les risques de toxicité.</span>
+            </div>
+        </div>
+
+        <footer class="section-header" style="margin-top: 4rem; padding-bottom: 4rem;">
+            <h3 class="gradient-text">Bibliographie de l'Unité 4</h3>
+            <ul class="bibliography-list">
+                <li>BAILLET, J. (n.d.). Homéostasie. Encyclopædia Universalis. https://www.universalis.fr/encyclopedie/homeostasie/</li>
+                <li>Canada, E. et D. social. (2025, December 1). Physiologiste au Canada: Chiffres et données sur le Marché du Travail - Guichet-Emplois. Guichet. https://www.guichetemplois.gc.ca/rapportmarche/profession-sommaire/2671/ca</li>
+                <li>Daniel J. Drucker. Laboratory Medicine and Pathobiology. (n.d.). https://lmp.utoronto.ca/faculty/daniel-drucker</li>
+                <li>Homeostasis | definition, function, examples, & facts | britannica. (n.d.). https://www.britannica.com/science/homeostasis</li>
+                <li>Homéostasie du fer et autophagie. (n.d.). https://ipubli.inserm.fr/bitstream/handle/10608/9137/MS_2017_03_260.html</li>
+                <li>LAVERGNE, D. (n.d.). Homéostasie : La Clé de L’ASSISTANCE fonctionnelle. Encyclopædia Universalis. https://www.universalis.fr/encyclopedie/homeostasie-la-cle-de-l-assistance-fonctionnelle/</li>
+                <li>Pascal, v., Hiblot, M., Wehbi, B., Aldigier, J.-C., & Cogné, M. (2021, January 25). Homéostasie de la Réponse Iga et microbiote. médecine/sciences. https://www.medecinesciences.org/en/articles/medsci/full_html/2021/01/msc200256/msc200256.html</li>
+                <li>professional, C. C. medical. (2025, December 22). Bodily balance: Not just a Fairy tale. Cleveland Clinic. https://my.clevelandclinic.org/health/articles/homeostasis</li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>
