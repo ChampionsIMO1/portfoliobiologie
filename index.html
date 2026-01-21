@@ -291,6 +291,7 @@
             box-shadow: 0 0 15px hsl(var(--primary)/0.2); 
             padding: 2.1rem; 
             margin-top: 2rem;
+            position: relative;
         }
         
         .animated-border::before {
@@ -433,7 +434,7 @@
         <div class="hero-content animate-fadeIn delay-1">
             <div class="badge">Portfolio Personnel - SBI4U</div>
             <h1 class="gradient-text">Andre Sidarous</h1>
-            <p>Bienvenue dans mon portfolio présentant ma lettre d'ouverture, mes unités, la carte conceptuelle et les projets associés.</p>
+            <p>Bienvenue dans mon portfolio!</p>
             <div class="cta-buttons">
                 <a href="#table-matieres" class="btn btn-primary">Voir la table de matière</a>
             </div>
@@ -545,8 +546,8 @@
                         </a>
                     </div>
                     <div class="image-box">
-                        <a href="javascript:void(0)" onclick="openLightbox('https://remotederm.ca/blog/wp-content/uploads/2023/02/accutane-tablets-for-acne.jpg', 'Pilules d\'Accutane (Isotrétinoïne)')">
-                            <img src="https://remotederm.ca/blog/wp-content/uploads/2023/02/accutane-tablets-for-acne.jpg" alt="Pilules d'Accutane (Isotrétinoïne)">
+                        <a href="javascript:void(0)" onclick="openLightbox('https://www.acne.org/wp-content/uploads/2021/12/accutane-isotretinoin.jpg', 'Pilules d\'Accutane (Isotrétinoïne)')">
+                            <img src="https://www.acne.org/wp-content/uploads/2021/12/accutane-isotretinoin.jpg" alt="Pilules d'Accutane (Isotrétinoïne)">
                         </a>
                     </div>
                     <div class="image-box">
@@ -581,7 +582,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-3" style="margin-top:2rem; max-width: 800px; margin-left: 215px;">
+            <div class="grid grid-3" style="margin-top:2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
                 <div class="card animate-fadeIn delay-4">
                     <img src="https://online.stanford.edu/sites/default/files/inline-images/foundations-of-genetics-and-genomics.jpg" alt="Unité 3">
                     <h3>Unité 3: Génétique Moléculaire</h3>
@@ -597,38 +598,87 @@
     </section>
 
     <section id="carte">
-        <div class="container">
-            <div class="section-header animate-fadeIn">
-                <h2 class="gradient-text">Carte Conceptuelle</h2>
-            </div>
-            <img src="https://www.researchgate.net/profile/George-Bogdanov/publication/329642859/figure/fig1/AS:716320555761152@1548871360560/Example-of-a-concept-map-Illustration-of-how-concepts-are-organized-in-the-map.png" alt="Carte Conceptuelle" class="animate-fadeIn delay-2" style="width:100%; border-radius:1rem; box-shadow:var(--shadow-card);">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="gradient-text">Carte Conceptuelle Interactive</h2>
+            <p>Visualisez les interconnexions entre les différentes unités de biologie (Biochimie, Métabolisme, Homéostasie et Génétique).</p>
         </div>
-    </section>
+
+        <div class="card animate-fadeIn delay-2" style="padding: 0; height: 650px; overflow: hidden; border: 1px solid hsl(var(--primary) / 0.3); box-shadow: var(--shadow-card); position: relative;">
+            
+            <iframe 
+                src="https://mymap.ai/share/sbiu-bAuwtEvjdjGol" 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                style="border:0; display: block;" 
+                allowfullscreen 
+                loading="lazy">
+            </iframe>
+
+        </div>
+
+        <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: hsl(var(--muted-foreground));">
+            <i>Astuce : Vous pouvez zoomer et déplacer la carte directement dans la fenêtre ci-dessus.</i>
+        </p>
+    </div>
+</section>
 
     <section id="collage" class="bg-secondary">
         <div class="container">
             <div class="section-header animate-fadeIn">
                 <h2 class="gradient-text">Collage Photo</h2>
-                <p>Un collage illustrant mes projets et expériences au cours de l'année.</p>
             </div>
             <div class="grid grid-3">
                 <div class="card animate-fadeIn delay-2">
-                    <a href="javascript:void(0)" onclick="openLightbox('https://cdn.pixabay.com/photo/2017/08/01/08/29/laboratory-2567046_1280.jpg', 'Expérience en laboratoire')">
-                        <img src="https://cdn.pixabay.com/photo/2017/08/01/08/29/laboratory-2567046_1280.jpg" alt="Projet 1">
+                    <a href="javascript:void(0)" onclick="openLightbox('https://media.discordapp.net/attachments/1308589082447843460/1463336918862532628/IMG_8996.jpg?ex=69717634&is=697024b4&hm=a254aa4cde36d1961a955c65d56ae97ac5d5e8b9e111299c75179fb04ac9b7ee&=&format=webp&width=648&height=864', 'Dissection')">
+                        <img src="https://media.discordapp.net/attachments/1308589082447843460/1463336918862532628/IMG_8996.jpg?ex=69717634&is=697024b4&hm=a254aa4cde36d1961a955c65d56ae97ac5d5e8b9e111299c75179fb04ac9b7ee&=&format=webp&width=648&height=864" alt="Dissection">
                     </a>
-                    <h3>Projet 1: Expérience en laboratoire</h3>
+                    <h3>Dissection</h3>
                 </div>
                 <div class="card animate-fadeIn delay-3">
-                    <a href="javascript:void(0)" onclick="openLightbox('https://cdn.pixabay.com/photo/2018/01/15/07/51/microscope-3084405_1280.jpg', 'Microscopie')">
-                        <img src="https://cdn.pixabay.com/photo/2018/01/15/07/51/microscope-3084405_1280.jpg" alt="Projet 2">
+                    <a href="javascript:void(0)" onclick="openLightbox('https://globalfocusmagazine.com/wp-content/uploads/2020/02/Engaging_with_technology-1536x1024.jpg', 'La Technologie')">
+                        <img src="https://globalfocusmagazine.com/wp-content/uploads/2020/02/Engaging_with_technology-1536x1024.jpg" alt="La Technologie">
                     </a>
-                    <h3>Projet 2: Microscopie</h3>
+                    <h3>La Technologie</h3>
                 </div>
                 <div class="card animate-fadeIn delay-4">
-                    <a href="javascript:void(0)" onclick="openLightbox('https://cdn.pixabay.com/photo/2017/02/01/11/36/biology-2034982_1280.jpg', 'Analyse de données biologiques')">
-                        <img src="https://cdn.pixabay.com/photo/2017/02/01/11/36/biology-2034982_1280.jpg" alt="Projet 3">
+                    <a href="javascript:void(0)" onclick="openLightbox('https://singerderm.com/wp-content/uploads/2022/12/accutane.max-1800x1800-1.jpg.webp', 'Accutane')">
+                        <img src="https://singerderm.com/wp-content/uploads/2022/12/accutane.max-1800x1800-1.jpg.webp" alt="Accutane">
                     </a>
-                    <h3>Projet 3: Analyse de données biologiques</h3>
+                    <h3>Accutane</h3>
+                </div>
+<div class="card animate-fadeIn delay-2">
+                    <a href="javascript:void(0)" onclick="openLightbox('https://media.discordapp.net/attachments/1308589082447843460/1463336920036671675/IMG_8818.jpg?ex=69717635&is=697024b5&hm=223ccf4cceffdefa71bd15a8735e2049089ee7cb03aee27961735e93f9176497&=&format=webp&width=648&height=864', 'Vacance Au Méxique')">
+                        <img src="https://media.discordapp.net/attachments/1308589082447843460/1463336920036671675/IMG_8818.jpg?ex=69717635&is=697024b5&hm=223ccf4cceffdefa71bd15a8735e2049089ee7cb03aee27961735e93f9176497&=&format=webp&width=648&height=864" alt="Vacance Au Méxique">
+                    </a>
+                    <h3>Vacance Au Méxique</h3>
+                </div>
+<div class="card animate-fadeIn delay-2">
+                    <a href="javascript:void(0)" onclick="openLightbox('https://media.discordapp.net/attachments/1308589082447843460/1463336920770805780/IMG_8817.jpg?ex=69717635&is=697024b5&hm=2c98ee0131762ea45f59013713f33c14ba9c5befbdce5bdbca19ede86d75aaea&=&format=webp&width=648&height=864', 'Vacance Au Méxique')">
+                        <img src="https://media.discordapp.net/attachments/1308589082447843460/1463336920770805780/IMG_8817.jpg?ex=69717635&is=697024b5&hm=2c98ee0131762ea45f59013713f33c14ba9c5befbdce5bdbca19ede86d75aaea&=&format=webp&width=648&height=864" alt="Vacance Au Méxique">
+                    </a>
+                    <h3>Vacance Au Méxique</h3>
+                </div>
+<div class="card animate-fadeIn delay-2">
+                    <a href="javascript:void(0)" onclick="openLightbox('https://images.squarespace-cdn.com/content/v1/5fce63270356d927d7eecdbd/033e9988-2ac8-4cb9-8b9f-5bf05fb22dcb/gff.jpg', 'Computer Science')">
+                        <img src="https://images.squarespace-cdn.com/content/v1/5fce63270356d927d7eecdbd/033e9988-2ac8-4cb9-8b9f-5bf05fb22dcb/gff.jpg" alt="Computer Science">
+                    </a>
+                    <h3>Computer Science</h3>
+                </div>
+<div class="card animate-fadeIn delay-2">
+                    <a href="javascript:void(0)" onclick="openLightbox('https://www.atslifesciences.com/wp-content/uploads/sites/63/2024/07/PHARMACEUTICALS-page-header.jpg', 'Pharmacie')">
+                        <img src="https://www.atslifesciences.com/wp-content/uploads/sites/63/2024/07/PHARMACEUTICALS-page-header.jpg" alt="Pharmacie">
+                    </a>
+                    <h3>Pharmacie</h3>
+                </div>
+<div class="card animate-fadeIn delay-2">
+                    <a href="javascript:void(0)" onclick="openLightbox('https://imageio.forbes.com/specials-images/imageserve/5fca87f3ce4ca55e8985a10a/People-meeting-and-discussing-growth-statistics-on-tablet-/0x0.jpg?format=jpg&width=480', 'Business')">
+                        <img src="https://imageio.forbes.com/specials-images/imageserve/5fca87f3ce4ca55e8985a10a/People-meeting-and-discussing-growth-statistics-on-tablet-/0x0.jpg?format=jpg&width=480" alt="Business">
+                    </a>
+                    <h3>Business</h3>
+                </div>
+</div>
                 </div>
             </div>
         </div>
@@ -639,44 +689,42 @@
             <div class="section-header animate-fadeIn">
                 <h2 class="gradient-text">Lettre de Clôture</h2>
             </div>
-            <div class="letter-box animated-border animate-fadeIn delay-2">
-                <p>Merci d'avoir consulté mon portfolio. J'espère que cette présentation vous a permis de mieux comprendre mes apprentissages et mes projets au cours de cette année.</p>
+            <div class="letter-box animated-border animate-fadeIn delay-2" style="border-radius: 1.5rem;">
+                <p><b>Cher M. Mark,</b></p>
+                
+                <p style="margin-top: 1.5em;">Alors que le semestre se termine, je prends le temps de réfléchir à mon parcours dans ton cours de Biologie. Ce cours a été une expérience enrichissante qui m’a permis de mieux comprendre les mécanismes complexes des êtres vivants et d’approfondir mon intérêt pour les sciences biologiques et médicales.</p>
+
+                <p style="margin-top: 1.5em;">Le contenu du cours a été à la fois intéressant et pertinent, particulièrement pour quelqu’un qui souhaite poursuivre des études dans un domaine lié à la science et à la santé. Les unités sur la biochimie, les processus métaboliques, l’homéostasie et la génétique m’ont permis de mieux comprendre comment le corps humain fonctionne à l’échelle cellulaire et moléculaire. Ces notions m’ont aidé à voir la biologie comme une science concrète, directement liée à la médecine, à la recherche pharmaceutique et aux technologies biomédicales.</p>
+
+                <p style="margin-top: 1.5em;">Au cours du semestre, mes connaissances en biologie ont considérablement augmenté. Plusieurs concepts que je connaissais seulement en surface sont maintenant beaucoup plus clairs, comme le rôle des enzymes, la régulation hormonale, les mécanismes de rétroaction et l’équilibre interne du corps. J’ai aussi corrigé certaines fausses idées, comme le fait que les réactions biologiques se produisent automatiquement, alors qu’elles sont en réalité régulées par des systèmes complexes.</p>
+
+                <p style="margin-top: 1.5em;">Ce cours a également eu un impact positif sur mes stratégies d’apprentissage. J’ai appliqué les méthodes que j’avais proposées au début de l’année, comme la prise de notes structurée, la révision régulière et la recherche autonome. J’ai constaté que relire mes notes après chaque cours et faire des liens avec des applications réelles m’a beaucoup aidé à mieux comprendre la matière. La réalisation de travaux de recherche m’a aussi permis de développer mon esprit critique et ma capacité à analyser des articles scientifiques.</p>
+
+                <p style="margin-top: 1.5em;">Pour améliorer le cours, je suggérerais d’intégrer davantage de laboratoires et d’activités pratiques. Les expériences concrètes permettent de mieux visualiser les concepts théoriques et de développer une meilleure compréhension du fonctionnement réel des systèmes biologiques. Les travaux pratiques rendent aussi l’apprentissage plus dynamique et motivant, tout en préparant davantage les élèves aux études postsecondaires en sciences.</p>
+
+                <p style="margin-top: 1.5em;">En conclusion, ce cours m’a offert une base scientifique solide et m’a confirmé mon intérêt pour les domaines liés à la biologie, à la santé et à la technologie. Je vous remercie pour votre enseignement, votre disponibilité et votre patience.</p>
+
+                <p style="margin-top: 2em;">
+                    <b>Sincèrement,</b><br>
+                    <b>André Sidarous</b>
+                </p>
             </div>
         </div>
     </section>
 
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="close-btn">&times;</span> 
-        <img class="lightbox-content" id="lightboxImage" onclick="event.stopPropagation()">
-        <div id="caption"></div>
+    <div id="myLightbox" class="lightbox">
+        <span class="close-btn" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="img01">
+        <div id="caption" style="text-align:center; color: #ccc; padding: 10px 20px;"></div>
     </div>
 
     <script>
-        
-        // Nouvelle fonction pour ouvrir la Lightbox
-        function openLightbox(imageSrc, altText) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImage = document.getElementById('lightboxImage');
-            
-            lightbox.style.display = "block";
-            lightboxImage.src = imageSrc;
-            
-            // Empêche le défilement de la page principale
-            document.body.style.overflow = "hidden";
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
         }
 
-        // Nouvelle fonction pour fermer la Lightbox
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.style.display = "none";
-            
-            // Rétablit le défilement de la page principale
-            document.body.style.overflow = "auto";
-        }
-
-        // Fonctions de navigation existantes
-        const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
             if (window.scrollY > 50) {
                 nav.classList.add('scrolled');
             } else {
@@ -684,17 +732,19 @@
             }
         });
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
-        }
-
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        function openLightbox(src, alt) {
+            document.getElementById('myLightbox').style.display = "block";
+            document.getElementById('img01').src = src;
+            document.getElementById('caption').innerHTML = alt;
+        }
+
+        function closeLightbox() {
+            document.getElementById('myLightbox').style.display = "none";
+        }
     </script>
 </body>
-
 </html>
-
-
